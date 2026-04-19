@@ -1,17 +1,22 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
+import react from "@astrojs/react";
+import tailwindcss from "@tailwindcss/vite";
+import { defineConfig } from "astro/config";
 
-import react from '@astrojs/react';
-import tailwindcss from '@tailwindcss/vite';
-import cloudflare from '@astrojs/cloudflare';
-
-// https://astro.build/config
 export default defineConfig({
-  integrations: [react()],
+	site: 'https://namthanhcar.com',
+	integrations: [react()],
+	image: { service: { entrypoint: "astro/assets/services/sharp" } },
 
-  vite: {
-    plugins: [tailwindcss()]
-  },
+	i18n: {
+		defaultLocale: "vi",
+		locales: ["vi", "en"],
+		routing: {
+			prefixDefaultLocale: false,
+		},
+	},
 
-  adapter: cloudflare()
+	vite: {
+		plugins: [tailwindcss()],
+	},
 });

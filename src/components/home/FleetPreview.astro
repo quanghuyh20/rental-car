@@ -1,0 +1,83 @@
+---
+import { Image } from 'astro:assets';
+import { ArrowRight, Car } from 'lucide-react';
+import { useTranslations, type Locale } from '@/i18n/translations';
+import { localePath } from '@/i18n/paths';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+	locale: Locale;
+	cars: CollectionEntry<'cars'>[];
+}
+
+const { locale, cars } = Astro.props;
+const t = useTranslations(locale);
+
+function formatPrice(n: number) {
+	return n.toLocaleString('vi-VN') + 'đ';
+}
+---
+
+<section class="container mx-auto px-4 py-20">
+	<div class="text-center mb-12">
+		<h2 class="text-3xl font-bold">{t.fleet.title}</h2>
+		<p class="text-muted-foreground mt-2">{t.fleet.subtitle}</p>
+	</div>
+
+	<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+		{cars.map((car) => (
+			<div class="rounded-xl border border-border bg-card overflow-hidden hover:border-primary/50 transition-colors">
+				<div class="aspect-video bg-muted/50 flex items-center justify-center">
+					{car.data.images.length > 0 ? (
+						<Image
+							src={car.data.images[0]}
+							alt={car.data.name}
+							width={640}
+							height={360}
+							class="w-full h-full object-cover"
+							loading="lazy"
+						/>
+					) : (
+						<Car size={48} class="text-muted-foreground/30" strokeWidth={1} />
+					)}
+				</div>
+
+				<div class="p-5">
+					<div class="flex items-start justify-between mb-3">
+						<div>
+							<h3 class="font-semibold">{car.data.name}</h3>
+							<p class="text-sm text-muted-foreground">
+								{car.data.seats} {t.fleet.seats} · {t.fleet[car.data.transmission]} · {t.fleet[car.data.fuel]}
+							</p>
+						</div>
+						<span class={`text-xs px-2 py-0.5 rounded-full font-medium ${car.data.available ? 'bg-primary/10 text-primary' : 'bg-muted text-muted-foreground'}`}>
+							{car.data.available ? t.fleet.available : t.fleet.unavailable}
+						</span>
+					</div>
+
+					<div class="flex gap-4 text-sm pt-3 border-t border-border">
+						<div>
+							<div class="text-muted-foreground text-xs">{t.fleet.perDay}</div>
+							<div class="font-semibold text-primary">{formatPrice(car.data.pricePerDay)}</div>
+						</div>
+						<div class="w-px bg-border" />
+						<div>
+							<div class="text-muted-foreground text-xs">{t.fleet.perMonth}</div>
+							<div class="font-semibold">{formatPrice(car.data.pricePerMonth)}</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		))}
+	</div>
+
+	<div class="text-center mt-10">
+		<a
+			href={localePath(locale, 'fleet')}
+			class="inline-flex items-center gap-2 border border-border px-6 py-3 rounded-lg font-medium hover:bg-muted/50 transition-colors"
+		>
+			{t.fleet.viewAll}
+			<ArrowRight size={16} />
+		</a>
+	</div>
+</section>

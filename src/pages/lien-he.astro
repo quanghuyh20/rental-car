@@ -1,0 +1,15 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { getLocaleFromUrl } from "@/i18n/translations";
+import ContactPageContent from "@/components/contact/ContactPageContent.astro";
+
+const locale = getLocaleFromUrl(Astro.url);
+---
+
+<Layout
+	title="Liên hệ – Nam Thanh Car"
+	description="Liên hệ Nam Thanh Car để thuê xe tại TP.HCM. Hotline: 0938 881 891. Hỗ trợ 24/7, tư vấn miễn phí."
+	routeKey="contact"
+>
+	<ContactPageContent locale={locale} />
+</Layout>

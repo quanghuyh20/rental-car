@@ -1,0 +1,121 @@
+---
+import { getLocaleFromUrl, useTranslations } from "@/i18n/translations";
+import { localePath } from "@/i18n/paths";
+import { CONTACT } from "@/lib/constants";
+
+const locale = getLocaleFromUrl(Astro.url);
+const t = useTranslations(locale);
+---
+
+<footer class="bg-muted/40 border-t border-border mt-24">
+	<div class="container mx-auto px-4 py-12">
+		<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+			<!-- Brand -->
+			<div>
+				<a href={localePath(locale, "home")} class="font-bold text-xl">
+					<span class="text-primary">Nam Thanh</span>
+					<span class="text-muted-foreground font-normal"> Car</span>
+				</a>
+				<p class="mt-3 text-sm text-muted-foreground leading-relaxed max-w-xs">
+					{t.footer.description}
+				</p>
+				<div class="flex gap-3 mt-4">
+					<a
+						href={CONTACT.FACEBOOK}
+						target="_blank"
+						rel="noopener noreferrer"
+						aria-label="Facebook"
+						class="text-muted-foreground hover:text-foreground transition-colors"
+					>
+						<svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+							<path
+								d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
+							></path>
+						</svg>
+					</a>
+					<a
+						href={CONTACT.ZALO_URL}
+						target="_blank"
+						rel="noopener noreferrer"
+						aria-label="Zalo"
+						class="text-muted-foreground hover:text-foreground transition-colors text-sm font-bold"
+					>
+						Zalo
+					</a>
+				</div>
+			</div>
+
+			<!-- Quick links -->
+			<div>
+				<h4 class="font-semibold text-sm mb-4">{t.footer.links}</h4>
+				<ul class="space-y-2 text-sm text-muted-foreground">
+					<li>
+						<a
+							href={localePath(locale, "home")}
+							class="hover:text-foreground transition-colors">{t.nav.home}</a>
+					</li>
+					<li>
+						<a
+							href={localePath(locale, "fleet")}
+							class="hover:text-foreground transition-colors">{t.nav.fleet}</a>
+					</li>
+					<li>
+						<a
+							href={localePath(locale, "about")}
+							class="hover:text-foreground transition-colors">{t.nav.about}</a>
+					</li>
+					<li>
+						<a
+							href={localePath(locale, "contact")}
+							class="hover:text-foreground transition-colors"
+							>{t.nav.contact}</a>
+					</li>
+				</ul>
+			</div>
+
+			<!-- Contact -->
+			<div>
+				<h4 class="font-semibold text-sm mb-4">{t.footer.contact}</h4>
+				<ul class="space-y-2 text-sm text-muted-foreground">
+					<li class="flex gap-2 items-start">
+						<span class="shrink-0">📍</span>
+						<span>{t.footer.address}</span>
+					</li>
+					<li>
+						<a
+							href={`tel:${CONTACT.PHONE}`}
+							class="hover:text-foreground transition-colors"
+						>
+							📞 {CONTACT.PHONE_DISPLAY}
+						</a>
+					</li>
+					<li>
+						<a
+							href={`mailto:${CONTACT.EMAIL}`}
+							class="hover:text-foreground transition-colors"
+						>
+							✉️ {CONTACT.EMAIL}
+						</a>
+					</li>
+					<li>
+						<a
+							href={CONTACT.MAPS}
+							target="_blank"
+							rel="noopener noreferrer"
+							class="hover:text-foreground transition-colors"
+						>
+							🗺️ Google Maps
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<div
+			class="mt-8 pt-6 border-t border-border text-center text-xs text-muted-foreground"
+		>
+			© {new Date().getFullYear()}
+			{t.footer.rights}
+		</div>
+	</div>
+</footer>

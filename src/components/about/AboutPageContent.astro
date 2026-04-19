@@ -1,0 +1,172 @@
+---
+import { useTranslations, type Locale } from '@/i18n/translations';
+import { STATS } from '@/lib/constants';
+import CtaSection from '@/components/home/CtaSection.astro';
+import { StatsWithRipple } from '@/components/ui/stats-with-ripple';
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+const stats = STATS.map(({ value, statKey }) => ({ value, label: t.stats[statKey] }));
+
+const milestones = locale === 'vi'
+	? [
+		{ year: '2016', label: 'Thành lập', desc: 'Công ty ra đời với 2 xe đầu tiên tại TP.HCM' },
+		{ year: '2020', label: 'Mở rộng', desc: 'Mở rộng đội xe lên 6+ chiếc, phục vụ doanh nghiệp' },
+		{ year: '2024+', label: 'Hôm nay', desc: 'Hơn 500 khách hàng tin tưởng, phục vụ 24/7' },
+	]
+	: [
+		{ year: '2016', label: 'Founded', desc: 'Started with 2 vehicles in Ho Chi Minh City' },
+		{ year: '2020', label: 'Expanded', desc: 'Grew to 6+ vehicles, serving corporate clients' },
+		{ year: '2024+', label: 'Today', desc: '500+ satisfied customers, 24/7 service' },
+	];
+
+const valueIcons = ['◈', '◉', '◎'];
+---
+
+<!-- ── Hero ──────────────────────────────────────────── -->
+<section class="relative flex items-center overflow-hidden py-32 md:py-48">
+	<!-- Radial glow -->
+	<div class="absolute inset-0 bg-[radial-gradient(ellipse_70%_50%_at_70%_50%,oklch(0.6_0.15_250/0.07),transparent)]" />
+	<!-- Ghost year watermark -->
+	<span class="absolute right-[-1vw] top-1/2 -translate-y-1/2 text-[30vw] font-black text-foreground/[0.03] select-none pointer-events-none leading-none tracking-tighter">
+		08
+	</span>
+
+	<div class="relative container mx-auto px-8 md:px-16 grid md:grid-cols-[3fr_2fr] gap-12 md:gap-20 items-center">
+		<!-- Left: headline -->
+		<div>
+			<span class="text-xs font-semibold uppercase tracking-[0.4em] text-primary/70">
+				{t.about.companyName}
+			</span>
+			<h1 class="mt-6 text-[clamp(3rem,8vw,6.5rem)] font-black leading-[0.92] tracking-tighter">
+				{locale === 'vi' ? (
+					<>Tám năm.<br /><span class="text-primary">Mỗi hành trình.</span></>
+				) : (
+					<>Eight years.<br /><span class="text-primary">Every journey.</span></>
+				)}
+			</h1>
+		</div>
+
+		<!-- Right: tagline + scroll hint -->
+		<div class="flex flex-col gap-6 border-l border-border pl-8 md:pl-12">
+			<p class="text-base md:text-lg font-light text-foreground/60 leading-relaxed">
+				"{t.about.tagline}"
+			</p>
+			<div class="flex items-center gap-2 text-xs text-muted-foreground/40 uppercase tracking-widest">
+				<span>↓</span>
+				<span>{locale === 'vi' ? 'Cuộn để khám phá' : 'Scroll to explore'}</span>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- ── Story ─────────────────────────────────────────── -->
+<section class="border-t border-border bg-foreground/[0.02]">
+	<div class="container mx-auto px-8 md:px-16 py-24">
+		<div class="grid md:grid-cols-[1fr_240px] gap-16 items-start">
+			<!-- Main copy -->
+			<div>
+				<p class="text-lg text-foreground leading-[1.9]">
+					<span class="float-left text-7xl font-black leading-[0.8] mr-3 mt-1 text-primary">
+						{t.about.desc1[0]}
+					</span>
+					{t.about.desc1.slice(1)}
+				</p>
+				<p class="mt-8 text-lg text-muted-foreground leading-[1.9] clear-both">
+					{t.about.desc2}
+				</p>
+			</div>
+
+			<!-- Side pull quote -->
+			<aside class="border-l-2 border-primary pl-6 pt-1">
+				<p class="text-base italic font-medium text-primary leading-relaxed">
+					"Uy tín – An toàn – Chuyên nghiệp"
+				</p>
+				<p class="mt-4 text-xs uppercase tracking-widest text-muted-foreground">{t.about.companyName}</p>
+			</aside>
+		</div>
+	</div>
+</section>
+
+<!-- ── Stats ─────────────────────────────────────────── -->
+<StatsWithRipple client:load stats={stats} />
+
+<!-- ── Timeline ──────────────────────────────────────── -->
+<section class="border-t border-border bg-foreground/[0.02] overflow-x-auto">
+	<div class="min-w-[600px] container mx-auto px-8 md:px-16 py-20">
+		<p class="text-xs uppercase tracking-[0.3em] text-muted-foreground mb-12">
+			{locale === 'vi' ? 'Hành trình' : 'Our journey'}
+		</p>
+		<div class="relative flex items-start gap-0">
+			<!-- Line -->
+			<div class="absolute top-[0.45rem] left-0 right-0 h-px bg-border" />
+			{milestones.map((m) => (
+				<div class="relative flex-1 pr-8">
+					<div class="w-[9px] h-[9px] rounded-full bg-primary ring-4 ring-primary/20 mb-6 relative z-10" />
+					<p class="text-4xl font-black text-muted-foreground/20 leading-none mb-3 tabular-nums">{m.year}</p>
+					<p class="text-sm font-semibold mb-1">{m.label}</p>
+					<p class="text-xs text-muted-foreground leading-relaxed">{m.desc}</p>
+				</div>
+			))}
+		</div>
+	</div>
+</section>
+
+<!-- ── Values (principles grid) ──────────────────────── -->
+<section class="border-t border-border">
+	<div class="container mx-auto px-8 md:px-16 py-20">
+		<p class="text-xs uppercase tracking-[0.3em] text-muted-foreground mb-12">
+			{locale === 'vi' ? 'Giá trị cốt lõi' : 'Core values'}
+		</p>
+		<div class="grid md:grid-cols-3 gap-px bg-border">
+			{t.about.values.map((v, i) => (
+				<div class="bg-background p-10 flex flex-col gap-6">
+					<span class="text-2xl text-primary">{valueIcons[i]}</span>
+					<h3 class="text-2xl font-black tracking-tight">{v.title.toUpperCase()}</h3>
+					<p class="text-sm text-muted-foreground leading-relaxed">{v.desc}</p>
+				</div>
+			))}
+		</div>
+	</div>
+</section>
+
+<!-- ── Why choose us ─────────────────────────────────── -->
+<section class="border-t border-border bg-foreground/[0.02]">
+	<div class="container mx-auto px-8 md:px-16 py-20">
+		<div class="grid md:grid-cols-[1fr_2fr] gap-16">
+			<div>
+				<p class="text-xs uppercase tracking-[0.3em] text-muted-foreground sticky top-8">
+					{t.about.whyTitle}
+				</p>
+			</div>
+			<div>
+				{t.about.why.map((w, i) => (
+					<div class="flex gap-8 py-8 border-b border-border last:border-0">
+						<span class="text-xs font-mono text-primary/50 tracking-widest shrink-0 pt-1">
+							{String(i + 1).padStart(2, '0')}
+						</span>
+						<div>
+							<p class="text-lg font-semibold mb-2">{w.title}</p>
+							<p class="text-sm text-muted-foreground leading-relaxed">{w.desc}</p>
+						</div>
+					</div>
+				))}
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- ── Closing pull quote ────────────────────────────── -->
+<section class="border-t border-border">
+	<div class="container mx-auto px-8 md:px-16 py-32 flex flex-col items-center text-center gap-8">
+		<div class="w-px h-12 bg-primary/40" />
+		<blockquote class="text-3xl md:text-5xl font-light italic max-w-3xl leading-tight text-foreground/70">
+			"{t.about.tagline}"
+		</blockquote>
+		<p class="text-xs tracking-[0.4em] uppercase text-muted-foreground">{t.about.companyName}</p>
+		<div class="w-px h-12 bg-border" />
+	</div>
+</section>
+
+<CtaSection locale={locale} />

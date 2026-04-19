@@ -1,0 +1,69 @@
+---
+import "@/styles/global.css";
+import Navbar from "@/components/layout/Navbar.astro";
+import Footer from "@/components/layout/Footer.astro";
+import { getLocaleFromUrl } from "@/i18n/translations";
+import { PATHS, type RouteKey } from "@/i18n/paths";
+
+interface Props {
+	title: string;
+	description?: string;
+	image?: string;
+	routeKey?: RouteKey;
+}
+
+const {
+	title,
+	description = "Dịch vụ thuê xe uy tín tại TP.HCM – Nam Thanh Car. Thuê xe theo ngày, theo tháng với tài xế chuyên nghiệp.",
+	image = "/og-image.jpg",
+	routeKey = "home",
+} = Astro.props;
+
+const locale = getLocaleFromUrl(Astro.url);
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+const viHref = new URL(PATHS[routeKey].vi, Astro.site);
+const enHref = new URL(`/en${PATHS[routeKey].en}`, Astro.site);
+---
+
+<!doctype html>
+<html lang={locale} class="dark">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="generator" content={Astro.generator} />
+
+		<!-- SEO -->
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		<link rel="canonical" href={canonicalURL} />
+
+		<!-- Open Graph -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={canonicalURL} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={new URL(image, Astro.site)} />
+		<meta property="og:locale" content={locale === "vi" ? "vi_VN" : "en_US"} />
+
+		<!-- Twitter -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={new URL(image, Astro.site)} />
+
+		<!-- hreflang -->
+		<link rel="alternate" hreflang="vi" href={viHref} />
+		<link rel="alternate" hreflang="en" href={enHref} />
+		<link rel="alternate" hreflang="x-default" href={viHref} />
+
+		<slot name="head" />
+	</head>
+	<body class="min-h-screen bg-background text-foreground antialiased">
+		<Navbar routeKey={routeKey} />
+		<main class="pt-16">
+			<slot />
+		</main>
+		<Footer />
+	</body>
+</html>

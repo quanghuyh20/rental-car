@@ -1,0 +1,37 @@
+---
+import { Image } from 'astro:assets';
+import { useTranslations, type Locale } from '@/i18n/translations';
+import partner1 from '@/assets/partners/partner-1.jpg';
+import partner2 from '@/assets/partners/partner-2.jpg';
+import partner3 from '@/assets/partners/partner-3.jpg';
+import partner4 from '@/assets/partners/partner-4.jpg';
+import partner5 from '@/assets/partners/partner-5.jpg';
+import partner6 from '@/assets/partners/partner-6.jpg';
+import partner7 from '@/assets/partners/partner-7.jpg';
+import partner8 from '@/assets/partners/partner-8.jpg';
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+
+const partners = [partner1, partner2, partner3, partner4, partner5, partner6, partner7, partner8];
+---
+
+<section class="border-t border-border">
+	<div class="container mx-auto px-8 md:px-16 py-12">
+		<p class="text-xs uppercase tracking-[0.3em] text-muted-foreground/50 text-center mb-8">
+			{locale === 'vi' ? 'Đối tác tin cậy' : 'Trusted partners'}
+		</p>
+		<div class="flex flex-wrap items-center justify-center gap-6 md:gap-10">
+			{partners.map((src, i) => (
+				<Image
+					src={src}
+					alt={`Partner ${i + 1}`}
+					height={40}
+					class="h-8 md:h-10 w-auto object-contain opacity-50 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0"
+					loading="lazy"
+				/>
+			))}
+		</div>
+	</div>
+</section>

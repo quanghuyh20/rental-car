@@ -1,0 +1,17 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { getLocaleFromUrl } from '@/i18n/translations';
+import { getCollection } from 'astro:content';
+import FleetPageContent from '@/components/fleet/FleetPageContent.astro';
+
+const locale = getLocaleFromUrl(Astro.url);
+const allCars = await getCollection('cars');
+---
+
+<Layout
+	title="Car Rental Fleet – Nam Thanh Car"
+	description="Car rental pricing in Ho Chi Minh City: Toyota Innova, Fortuner, Kia Carnival, Sedona, Vios, Mazda 3. From 1,300,000 VND/day."
+	routeKey="fleet"
+>
+	<FleetPageContent locale={locale} cars={allCars} />
+</Layout>

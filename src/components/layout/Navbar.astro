@@ -1,0 +1,118 @@
+---
+import { Menu } from "lucide-react";
+import { getLocaleFromUrl } from "@/i18n/translations";
+import { localePath, alternatePath, type RouteKey } from "@/i18n/paths";
+import { useTranslations } from "@/i18n/translations";
+import { CONTACT } from "@/lib/constants";
+
+interface Props {
+	routeKey?: RouteKey;
+}
+
+const { routeKey = "home" } = Astro.props;
+const locale = getLocaleFromUrl(Astro.url);
+const t = useTranslations(locale);
+
+const navLinks = [
+	{ key: "home", label: t.nav.home },
+	{ key: "fleet", label: t.nav.fleet },
+	{ key: "about", label: t.nav.about },
+	{ key: "contact", label: t.nav.contact },
+] satisfies { key: RouteKey; label: string }[];
+
+const altHref = alternatePath(locale, routeKey);
+const altLabel = locale === "vi" ? "EN" : "VI";
+---
+
+<header
+	class="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border"
+>
+	<nav class="container mx-auto px-4 h-16 flex items-center justify-between">
+		<!-- Logo -->
+		<a
+			href={localePath(locale, "home")}
+			class="flex items-center gap-2 font-bold text-xl"
+		>
+			<span class="text-primary">Nam Thanh</span>
+			<span class="text-muted-foreground font-normal">Car</span>
+		</a>
+
+		<!-- Desktop nav -->
+		<ul class="hidden md:flex items-center gap-8">
+			{
+				navLinks.map(({ key, label }) => (
+					<li>
+						<a
+							href={localePath(locale, key)}
+							class="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+						>
+							{label}
+						</a>
+					</li>
+				))
+			}
+		</ul>
+
+		<!-- Right actions -->
+		<div class="flex items-center gap-3">
+			<a
+				href={altHref}
+				class="text-xs font-medium px-2 py-1 rounded border border-border text-muted-foreground hover:text-foreground hover:border-foreground transition-colors"
+			>
+				{altLabel}
+			</a>
+			<a
+				href={CONTACT.ZALO_URL}
+				target="_blank"
+				rel="noopener noreferrer"
+				class="hidden md:inline-flex items-center gap-1.5 bg-primary text-primary-foreground text-sm font-medium px-4 py-2 rounded-md hover:bg-primary/90 transition-colors"
+			>
+				Zalo
+			</a>
+			<button
+				id="mobile-menu-btn"
+				aria-label="Menu"
+				class="md:hidden p-2 text-muted-foreground hover:text-foreground"
+			>
+				<Menu size={20} />
+			</button>
+		</div>
+	</nav>
+
+	<!-- Mobile menu -->
+	<div
+		id="mobile-menu"
+		class="hidden md:hidden border-t border-border bg-background"
+	>
+		<ul class="container mx-auto px-4 py-4 flex flex-col gap-4">
+			{
+				navLinks.map(({ key, label }) => (
+					<li>
+						<a
+							href={localePath(locale, key)}
+							class="block text-sm font-medium text-muted-foreground hover:text-foreground"
+						>
+							{label}
+						</a>
+					</li>
+				))
+			}
+			<li>
+				<a
+					href={CONTACT.ZALO_URL}
+					target="_blank"
+					rel="noopener noreferrer"
+					class="inline-flex items-center gap-1.5 bg-primary text-primary-foreground text-sm font-medium px-4 py-2 rounded-md"
+				>
+					Zalo
+				</a>
+			</li>
+		</ul>
+	</div>
+</header>
+
+<script>
+	const btn = document.getElementById("mobile-menu-btn");
+	const menu = document.getElementById("mobile-menu");
+	btn?.addEventListener("click", () => menu?.classList.toggle("hidden"));
+</script>

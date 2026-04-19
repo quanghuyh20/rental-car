@@ -1,0 +1,61 @@
+---
+import { getImage } from 'astro:assets';
+import { useTranslations, type Locale } from '@/i18n/translations';
+import { CarGrid } from '@/components/fleet/CarGrid';
+import CtaSection from '@/components/home/CtaSection.astro';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+	locale: Locale;
+	cars: CollectionEntry<'cars'>[];
+}
+
+const { locale, cars } = Astro.props;
+const t = useTranslations(locale);
+
+// Serialise for React island — resolve ImageMetadata to optimised URL strings
+const carsData = await Promise.all(
+	cars.map(async (c) => {
+		const images = await Promise.all(
+			c.data.images.map(async (img) => {
+				const { src } = await getImage({ src: img, format: 'webp', width: 600, height: 338 });
+				return src;
+			}),
+		);
+		return { id: c.id, data: { ...c.data, images } };
+	}),
+);
+
+const fleetT = {
+	seats: t.fleet.seats,
+	automatic: t.fleet.automatic,
+	manual: t.fleet.manual,
+	gasoline: t.fleet.gasoline,
+	diesel: t.fleet.diesel,
+	electric: t.fleet.electric,
+	available: t.fleet.available,
+	unavailable: t.fleet.unavailable,
+	perDay: t.fleet.perDay,
+	perMonth: t.fleet.perMonth,
+	bookNow: t.fleet.bookNow,
+	askPrice: t.fleet.askPrice,
+	allCars: t.fleet.allCars,
+	filter4Seats: t.fleet.filter4Seats,
+	filter7Seats: t.fleet.filter7Seats,
+};
+---
+
+<!-- Page header -->
+<section class="border-b border-border bg-muted/20">
+	<div class="container mx-auto px-4 py-16 text-center">
+		<h1 class="text-4xl font-bold mb-3">{t.fleet.pageTitle}</h1>
+		<p class="text-muted-foreground max-w-xl mx-auto">{t.fleet.pageSubtitle}</p>
+	</div>
+</section>
+
+<!-- Car grid with filter -->
+<section class="container mx-auto px-4 py-16">
+	<CarGrid client:load cars={carsData} t={fleetT} />
+</section>
+
+<CtaSection locale={locale} />

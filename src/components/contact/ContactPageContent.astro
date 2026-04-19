@@ -1,0 +1,157 @@
+---
+import { MapPin, Phone, Mail, Map, MessageCircle } from "lucide-react";
+import { useTranslations, type Locale } from "@/i18n/translations";
+import { CONTACT } from "@/lib/constants";
+
+interface Props {
+	locale: Locale;
+}
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+
+const zaloMsg = encodeURIComponent(
+	"Xin chào Nam Thanh Car, tôi muốn hỏi về dịch vụ thuê xe.",
+);
+const zaloUrl = `${CONTACT.ZALO_URL}?text=${zaloMsg}`;
+---
+
+<!-- Page header -->
+<section class="border-b border-border bg-muted/20">
+	<div class="container mx-auto px-4 py-16 text-center">
+		<h1 class="text-4xl font-bold mb-3">{t.contact.pageTitle}</h1>
+		<p class="text-muted-foreground">{t.contact.pageSubtitle}</p>
+	</div>
+</section>
+
+<section class="container mx-auto px-4 py-16">
+	<div class="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl mx-auto">
+		<!-- Contact info -->
+		<div class="flex flex-col gap-6">
+			<h2 class="text-2xl font-bold">{t.contact.infoTitle}</h2>
+
+			<ul class="flex flex-col gap-4">
+				<li class="flex gap-4 items-start">
+					<div
+						class="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0"
+					>
+						<MapPin size={18} className="text-primary" />
+					</div>
+					<div>
+						<div
+							class="text-xs text-muted-foreground mb-0.5 uppercase tracking-wide"
+						>
+							Địa chỉ
+						</div>
+						<span class="text-sm">{t.footer.address}</span>
+					</div>
+				</li>
+				<li class="flex gap-4 items-start">
+					<div
+						class="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0"
+					>
+						<Phone size={18} className="text-primary" />
+					</div>
+					<div>
+						<div
+							class="text-xs text-muted-foreground mb-0.5 uppercase tracking-wide"
+						>
+							{t.cta.call}
+						</div>
+						<a
+							href={`tel:${CONTACT.PHONE}`}
+							class="text-sm font-semibold hover:text-primary transition-colors"
+						>
+							{CONTACT.PHONE_DISPLAY}
+						</a>
+					</div>
+				</li>
+				<li class="flex gap-4 items-start">
+					<div
+						class="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0"
+					>
+						<Mail size={18} className="text-primary" />
+					</div>
+					<div>
+						<div
+							class="text-xs text-muted-foreground mb-0.5 uppercase tracking-wide"
+						>
+							Email
+						</div>
+						<a
+							href={`mailto:${CONTACT.EMAIL}`}
+							class="text-sm hover:text-primary transition-colors"
+						>
+							{CONTACT.EMAIL}
+						</a>
+					</div>
+				</li>
+				<li class="flex gap-4 items-start">
+					<div
+						class="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0"
+					>
+						<Map size={18} className="text-primary" />
+					</div>
+					<div>
+						<div
+							class="text-xs text-muted-foreground mb-0.5 uppercase tracking-wide"
+						>
+							Google Maps
+						</div>
+						<a
+							href={CONTACT.MAPS}
+							target="_blank"
+							rel="noopener noreferrer"
+							class="text-sm hover:text-primary transition-colors"
+						>
+							Xem bản đồ →
+						</a>
+					</div>
+				</li>
+			</ul>
+
+			<!-- Quick Zalo CTA -->
+			<div class="mt-4 p-6 rounded-xl border border-primary/30 bg-card">
+				<p class="text-sm text-muted-foreground mb-4">{t.contact.orCall}</p>
+				<div class="flex flex-col sm:flex-row gap-3">
+					<a
+						href={zaloUrl}
+						target="_blank"
+						rel="noopener noreferrer"
+						class="inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground font-semibold px-6 py-3 rounded-lg hover:bg-primary/90 transition-colors"
+					>
+						<MessageCircle size={18} />
+						Zalo: {CONTACT.PHONE_DISPLAY}
+					</a>
+					<a
+						href={`tel:${CONTACT.PHONE}`}
+						class="inline-flex items-center justify-center gap-2 border border-border font-semibold px-6 py-3 rounded-lg hover:bg-muted/50 transition-colors"
+					>
+						<Phone size={18} />
+						{CONTACT.PHONE_DISPLAY}
+					</a>
+				</div>
+			</div>
+		</div>
+
+		<!-- Map embed -->
+		<div class="flex flex-col gap-4">
+			<h2 class="text-2xl font-bold">{t.contact.formTitle}</h2>
+			<div
+				class="rounded-xl overflow-hidden border border-border flex-1 min-h-[400px]"
+			>
+				<iframe
+					src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3920.1!2d106.6!3d10.7!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTDCsDQyJzAwLjAiTiAxMDbCsDM2JzAwLjAiRQ!5e0!3m2!1sen!2s!4v1234567890"
+					width="100%"
+					height="100%"
+					style="min-height:400px;border:0;"
+					allowfullscreen
+					loading="lazy"
+					referrerpolicy="no-referrer-when-downgrade"
+					title="Nam Thanh Car location"></iframe>
+			</div>
+			<p class="text-xs text-muted-foreground text-center">
+				E8/221/A20 QL50, Bình Hưng, Bình Chánh, TP.HCM
+			</p>
+		</div>
+	</div>
+</section>

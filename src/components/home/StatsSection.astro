@@ -1,0 +1,16 @@
+---
+import { useTranslations, type Locale } from '@/i18n/translations';
+import { STATS } from '@/lib/constants';
+import { StatsWithRipple } from '@/components/ui/stats-with-ripple';
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+
+const stats = STATS.map(({ value, statKey }) => ({
+	value,
+	label: t.stats[statKey],
+}));
+---
+
+<StatsWithRipple client:load stats={stats} />

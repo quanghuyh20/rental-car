@@ -1,0 +1,37 @@
+---
+import { MessageCircle, Phone } from "lucide-react";
+import { useTranslations, type Locale } from "@/i18n/translations";
+import { CONTACT } from "@/lib/constants";
+
+interface Props {
+	locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+---
+
+<section class="container mx-auto px-4 py-20 text-center">
+	<div class="max-w-xl mx-auto">
+		<h2 class="text-3xl font-bold mb-3">{t.cta.title}</h2>
+		<p class="text-muted-foreground mb-8">{t.cta.subtitle}</p>
+		<div class="flex flex-wrap justify-center gap-4">
+			<a
+				href={CONTACT.ZALO_URL}
+				target="_blank"
+				rel="noopener noreferrer"
+				class="inline-flex items-center gap-2 bg-primary text-primary-foreground font-semibold px-8 py-3 rounded-lg hover:bg-primary/90 transition-colors"
+			>
+				<MessageCircle size={18} />
+				{t.cta.zalo}
+			</a>
+			<a
+				href={`tel:${CONTACT.PHONE}`}
+				class="inline-flex items-center gap-2 border border-border font-semibold px-8 py-3 rounded-lg hover:bg-muted/50 transition-colors"
+			>
+				<Phone size={18} />
+				{t.cta.call}: {CONTACT.PHONE_DISPLAY}
+			</a>
+		</div>
+	</div>
+</section>

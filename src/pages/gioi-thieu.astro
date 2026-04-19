@@ -1,0 +1,15 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { getLocaleFromUrl } from "@/i18n/translations";
+import AboutPageContent from "@/components/about/AboutPageContent.astro";
+
+const locale = getLocaleFromUrl(Astro.url);
+---
+
+<Layout
+	title="Giới thiệu – Nam Thanh Car"
+	description="Công ty TNHH TM DV VT Nam Thanh – Hơn 8 năm cung cấp dịch vụ thuê xe uy tín tại TP.HCM. Uy tín – An toàn – Chuyên nghiệp."
+	routeKey="about"
+>
+	<AboutPageContent locale={locale} />
+</Layout>
