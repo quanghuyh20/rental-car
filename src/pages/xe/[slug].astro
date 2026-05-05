@@ -1,0 +1,66 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { getLocaleFromUrl } from '@/i18n/translations';
+import { getCollection, render } from 'astro:content';
+import CarDetailContent from '@/components/fleet/CarDetailContent.astro';
+
+const { slug } = Astro.params;
+const allCars = await getCollection('cars');
+const car = allCars.find((c) => c.id === slug);
+
+if (!car) return Astro.redirect('/xe');
+
+const locale = getLocaleFromUrl(Astro.url);
+const { Content } = await render(car);
+---
+
+<Layout
+	title={`${car.data.name} – Thuê xe Nam Thanh Car`}
+	description={`Thuê ${car.data.name} ${car.data.seats} chỗ tại TP.HCM. Giá từ ${car.data.pricePerDay.toLocaleString('vi-VN')}đ/ngày. Giao xe tận nơi, bảo hiểm đầy đủ.`}
+	routeKey="fleet"
+	breadcrumbItems={[
+		{ name: "Trang chủ", url: "https://namthanhcar.net/" },
+		{ name: "Xe cho thuê", url: "https://namthanhcar.net/xe/" },
+		{ name: car.data.name, url: `https://namthanhcar.net/xe/${car.id}/` },
+	]}
+>
+	<script slot="head" type="application/ld+json" set:html={JSON.stringify({
+		"@context": "https://schema.org",
+		"@type": "Product",
+		"name": `${car.data.name} – Thuê xe ${car.data.seats} chỗ tại TP.HCM`,
+		"description": `Thuê ${car.data.name} ${car.data.seats} chỗ tại TP.HCM. Giá từ ${car.data.pricePerDay.toLocaleString('vi-VN')}đ/ngày. Giao xe tận nơi, bảo hiểm đầy đủ.`,
+		"brand": { "@type": "Brand", "name": car.data.name.split(" ")[0] },
+		"url": `https://namthanhcar.net/xe/${car.id}/`,
+		"offers": [
+			{
+				"@type": "Offer",
+				"name": "Thuê theo ngày",
+				"price": car.data.pricePerDay,
+				"priceCurrency": "VND",
+				"availability": car.data.available ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
+				"seller": { "@id": "https://namthanhcar.net/#business" },
+				"priceSpecification": {
+					"@type": "UnitPriceSpecification",
+					"price": car.data.pricePerDay,
+					"priceCurrency": "VND",
+					"unitCode": "DAY"
+				}
+			},
+			{
+				"@type": "Offer",
+				"name": "Thuê theo tháng",
+				"price": car.data.pricePerMonth,
+				"priceCurrency": "VND",
+				"availability": car.data.available ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
+				"seller": { "@id": "https://namthanhcar.net/#business" },
+				"priceSpecification": {
+					"@type": "UnitPriceSpecification",
+					"price": car.data.pricePerMonth,
+					"priceCurrency": "VND",
+					"unitCode": "MON"
+				}
+			}
+		]
+	})} />
+	<CarDetailContent locale={locale} car={car} Content={Content} />
+</Layout>

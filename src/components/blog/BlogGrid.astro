@@ -1,0 +1,128 @@
+---
+import { Image } from "astro:assets";
+import type { CollectionEntry } from "astro:content";
+import { ArrowRight, FileText } from "lucide-react";
+import type { Locale } from "@/i18n/translations";
+import { useTranslations } from "@/i18n/translations";
+import { localePath } from "@/i18n/paths";
+
+interface Props {
+	posts: CollectionEntry<"blog">[];
+	locale: Locale;
+}
+
+const { posts, locale } = Astro.props;
+const t = useTranslations(locale);
+
+function formatDate(date: Date): string {
+	return date.toLocaleDateString(locale === "vi" ? "vi-VN" : "en-US", {
+		year: "numeric",
+		month: "long",
+		day: "numeric",
+	});
+}
+
+const blogBase = localePath(locale, "blog");
+---
+
+<section class="py-16 md:py-24">
+	<div class="container mx-auto px-4">
+		<!-- Header -->
+		<div class="max-w-2xl mx-auto text-center mb-16">
+			<h1 class="text-4xl md:text-5xl font-bold tracking-tight mb-4">
+				{t.blog.pageTitle}
+			</h1>
+			<p class="text-lg text-muted-foreground">
+				{t.blog.pageSubtitle}
+			</p>
+		</div>
+
+		{
+			posts.length === 0 ? (
+				<p class="text-center text-muted-foreground">{t.blog.noPosts}</p>
+			) : (
+				<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+					{posts.map((post, idx) => (
+						<a
+							href={`${blogBase}${post.id}`}
+							class:list={[
+								"group relative flex flex-col rounded-xl border border-border bg-card overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-1",
+								idx === 0 && "md:col-span-2 md:flex-row",
+							]}
+						>
+							{/* Cover image */}
+							{post.data.cover ? (
+								<div
+									class:list={[
+										"overflow-hidden bg-muted",
+										idx === 0
+											? "md:w-1/2 aspect-16/10 md:aspect-auto"
+											: "aspect-16/10",
+									]}
+								>
+									<Image
+										src={post.data.cover}
+										alt={post.data.title}
+										class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+									/>
+								</div>
+							) : (
+								<div
+									class:list={[
+										"bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center",
+										idx === 0
+											? "md:w-1/2 aspect-[16/10] md:aspect-auto"
+											: "aspect-[16/10]",
+									]}
+								>
+									<FileText className="w-12 h-12 text-primary/30" strokeWidth={1.5} />
+								</div>
+							)}
+
+							{/* Content */}
+							<div
+								class:list={[
+									"flex flex-col justify-center p-6",
+									idx === 0 && "md:w-1/2",
+								]}
+							>
+								<div class="flex items-center gap-3 text-xs text-muted-foreground mb-3">
+									<time datetime={post.data.date.toISOString()}>
+										{formatDate(post.data.date)}
+									</time>
+									<span class="w-1 h-1 rounded-full bg-muted-foreground/50" />
+									<span>{post.data.author}</span>
+								</div>
+
+								<h2
+									class:list={[
+										"font-semibold tracking-tight mb-2 group-hover:text-primary transition-colors",
+										idx === 0 ? "text-2xl md:text-3xl" : "text-xl",
+									]}
+								>
+									{post.data.title}
+								</h2>
+
+								<p
+									class:list={[
+										"text-muted-foreground leading-relaxed",
+										idx === 0
+											? "text-base line-clamp-3"
+											: "text-sm line-clamp-2",
+									]}
+								>
+									{post.data.description}
+								</p>
+
+								<span class="inline-flex items-center gap-1 text-sm font-medium text-primary mt-4 group-hover:gap-2 transition-all">
+									{t.blog.readMore}
+									<ArrowRight className="w-4 h-4" />
+								</span>
+							</div>
+						</a>
+					))}
+				</div>
+			)
+		}
+	</div>
+</section>

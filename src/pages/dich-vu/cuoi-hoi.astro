@@ -1,0 +1,396 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { Image } from "astro:assets";
+import weddingCover from "@/assets/services/wedding-banner.webp";
+import { CONTACT } from "@/lib/constants";
+import {
+	Heart,
+	Star,
+	ShieldCheck,
+	Phone,
+	MessageCircle,
+	CheckCircle,
+	Sparkles,
+	Clock,
+} from "lucide-react";
+
+const canonicalUrl = "https://namthanhcar.net/dich-vu/cuoi-hoi/";
+
+const packages = [
+	{
+		name: "Gói Cơ Bản",
+		vehicle: "Toyota Innova / Kia Sedona",
+		seats: "7 chỗ",
+		hours: "4 giờ",
+		features: [
+			"Tài xế mặc vest",
+			"Xe trang trí hoa tươi cơ bản",
+			"Nội thành TP.HCM",
+		],
+	},
+	{
+		name: "Gói Sang Trọng",
+		vehicle: "Kia Carnival",
+		seats: "7 chỗ MPV",
+		hours: "6 giờ",
+		features: [
+			"Tài xế mặc vest",
+			"Trang trí hoa tươi cao cấp",
+			"Nội thành + 30km",
+		],
+		highlight: true,
+	},
+	{
+		name: "Gói Đoàn Xe",
+		vehicle: "Từ 2 xe trở lên",
+		seats: "Đa dạng",
+		hours: "Theo nhu cầu",
+		features: [
+			"Đội xe thống nhất màu sắc",
+			"Điều phối đoàn chuyên nghiệp",
+			"Phù hợp đám cưới đoàn lớn",
+		],
+	},
+];
+
+const reasons = [
+	{
+		icon: Sparkles,
+		title: "Xe sạch bóng, trang trí đẹp",
+		desc: "Xe được vệ sinh chi tiết và trang trí hoa tươi trước mỗi chuyến. Phông nền cưới ảnh không có gì xấu hổ.",
+	},
+	{
+		icon: Star,
+		title: "Tài xế kinh nghiệm cưới hỏi",
+		desc: "Tài xế hiểu quy trình đám cưới Việt, biết phối hợp với chụp ảnh, quay phim, đúng khung giờ rước dâu.",
+	},
+	{
+		icon: Clock,
+		title: "Đúng giờ tuyệt đối",
+		desc: "Xe có mặt trước giờ rước dâu ít nhất 30 phút. Có phương án dự phòng xe thay thế nếu phát sinh sự cố.",
+	},
+	{
+		icon: ShieldCheck,
+		title: "Báo giá trọn gói, không phát sinh",
+		desc: "Giá cố định theo gói đã thống nhất trước. Không tính thêm phí xăng, cầu đường, hay phí chờ trong khung giờ.",
+	},
+];
+---
+
+<Layout
+	title="Cho thuê xe cưới TP.HCM – Nam Thanh Car"
+	description="Cho thuê xe cưới TP.HCM uy tín. Kia Carnival, Toyota Innova trang trí hoa tươi, tài xế mặc vest, đúng giờ 100%. Liên hệ báo giá. Hotline: 0938 881 891."
+	routeKey="home"
+	disableHreflang={true}
+	breadcrumbItems={[
+		{ name: "Trang chủ", url: "https://namthanhcar.net/" },
+		{ name: "Dịch vụ", url: "https://namthanhcar.net/dich-vu/" },
+		{ name: "Cho thuê xe cưới", url: canonicalUrl },
+	]}
+>
+	<Fragment slot="head">
+		<link rel="canonical" href={canonicalUrl} />
+		<link rel="alternate" hreflang="vi-VN" href={canonicalUrl} />
+		<link rel="alternate" hreflang="x-default" href={canonicalUrl} />
+		<script
+			type="application/ld+json"
+			set:html={JSON.stringify({
+				"@context": "https://schema.org",
+				"@graph": [
+					{
+						"@type": "Service",
+						"@id": `${canonicalUrl}#service`,
+						name: "Cho thuê xe cưới TP.HCM",
+						description:
+							"Dịch vụ cho thuê xe cưới TP.HCM với Kia Carnival, Toyota Innova trang trí hoa tươi, tài xế mặc vest chuyên nghiệp. Phù hợp đám cưới, rước dâu, đãi tiệc.",
+						serviceType: "Wedding Car Rental",
+						provider: { "@id": "https://namthanhcar.net/#business" },
+						areaServed: { "@type": "City", name: "Thành phố Hồ Chí Minh" },
+						url: canonicalUrl,
+						offers: {
+							"@type": "Offer",
+							description:
+								"Gói thuê xe cưới 4–6 giờ, bao gồm trang trí hoa tươi và tài xế mặc vest. Liên hệ để nhận báo giá.",
+						},
+					},
+					{
+						"@type": "FAQPage",
+						mainEntity: [
+							{
+								"@type": "Question",
+								name: "Xe cưới có được trang trí hoa không?",
+								acceptedAnswer: {
+									"@type": "Answer",
+									text: "Có. Tất cả gói xe cưới của Nam Thanh Car đều bao gồm trang trí hoa tươi trên mui và cabin xe. Gói Sang Trọng có hoa cao cấp nhiều hơn.",
+								},
+							},
+							{
+								"@type": "Question",
+								name: "Nên đặt xe cưới trước bao lâu?",
+								acceptedAnswer: {
+									"@type": "Answer",
+									text: "Nên đặt trước tối thiểu 2–4 tuần, đặc biệt vào mùa cưới (tháng 11–1 và tháng 4–5). Các ngày cuối tuần đẹp thường được đặt trước 1–2 tháng.",
+								},
+							},
+							{
+								"@type": "Question",
+								name: "Gói xe cưới có bao gồm tài xế không?",
+								acceptedAnswer: {
+									"@type": "Answer",
+									text: "Có. Tài xế mặc vest, am hiểu quy trình đám cưới, phối hợp nhịp nhàng với ekip chụp ảnh và quay phim của gia đình.",
+								},
+							},
+							{
+								"@type": "Question",
+								name: "Nếu cần thêm giờ thì tính như thế nào?",
+								acceptedAnswer: {
+									"@type": "Answer",
+									text: "Có phí phát sinh ngoài giờ gói tùy loại xe, được thống nhất trước khi ký hợp đồng. Không có phí bất ngờ.",
+								},
+							},
+						],
+					},
+				],
+			})}
+		/>
+	</Fragment>
+
+	<!-- Hero -->
+	<section class="relative min-h-[70vh] flex items-center overflow-hidden">
+		<Image
+			src={weddingCover}
+			alt="Cho thuê xe cưới TP.HCM sang trọng – Nam Thanh Car"
+			class="absolute inset-0 w-full h-full object-cover grayscale-25"
+			loading="eager"
+			fetchpriority="high"
+		/>
+		<div class="absolute inset-0 bg-black/50"></div>
+		<div
+			class="absolute inset-0 bg-linear-to-t from-background via-background/5 to-transparent"
+		>
+		</div>
+
+		<div
+			class="relative z-10 container mx-auto px-4 py-20 text-center max-w-3xl"
+		>
+			<div
+				class="inline-flex items-center gap-2 text-xs font-semibold tracking-widest uppercase text-white/90 border border-white/30 rounded-full px-4 py-1.5 mb-6"
+			>
+				<Heart size={14} />
+				Dịch vụ cưới hỏi
+			</div>
+			<h1 class="text-4xl md:text-5xl font-bold tracking-tight mb-5 text-white">
+				Cho thuê xe cưới<br />TP.HCM sang trọng
+			</h1>
+			<p class="text-lg text-white/80 mb-8 max-w-xl mx-auto">
+				Kia Carnival, Toyota Innova trang trí hoa tươi tinh tế — tài xế mặc
+				vest, đúng giờ rước dâu, đẹp từng khung hình.
+			</p>
+			<div class="flex flex-col sm:flex-row gap-3 justify-center">
+				<a
+					href={CONTACT.ZALO_URL}
+					target="_blank"
+					rel="noopener noreferrer"
+					class="inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground font-semibold px-7 py-3.5 rounded-lg hover:bg-primary/90 transition-colors"
+				>
+					<MessageCircle size={18} />
+					Tư vấn qua Zalo
+				</a>
+				<a
+					href={`tel:${CONTACT.PHONE}`}
+					class="inline-flex items-center justify-center gap-2 bg-white/15 backdrop-blur-sm border border-white/30 text-white font-semibold px-7 py-3.5 rounded-lg hover:bg-white/25 transition-colors"
+				>
+					<Phone size={18} />
+					{CONTACT.PHONE_DISPLAY}
+				</a>
+			</div>
+		</div>
+	</section>
+
+	<!-- Why choose us -->
+	<section class="container mx-auto px-4 py-16 max-w-5xl">
+		<h2 class="text-2xl md:text-3xl font-bold mb-10 text-center">
+			Tại sao cặp đôi chọn Nam Thanh Car?
+		</h2>
+		<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+			{
+				reasons.map(({ icon: Icon, title, desc }) => (
+					<div class="rounded-xl border border-border bg-card p-6">
+						<div class="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
+							<Icon size={20} className="text-primary" />
+						</div>
+						<h3 class="font-semibold mb-2">{title}</h3>
+						<p class="text-sm text-muted-foreground leading-relaxed">{desc}</p>
+					</div>
+				))
+			}
+		</div>
+	</section>
+
+	<!-- Packages -->
+	<section class="border-y border-border bg-muted/20">
+		<div class="container mx-auto px-4 py-16 max-w-5xl">
+			<h2 class="text-2xl md:text-3xl font-bold mb-3 text-center">
+				Gói thuê xe cưới
+			</h2>
+			<p class="text-center text-muted-foreground mb-10">
+				Tất cả gói đều bao gồm tài xế mặc vest và trang trí hoa tươi
+			</p>
+			<div class="grid md:grid-cols-3 gap-6">
+				{
+					packages.map((pkg) => (
+						<div
+							class={`rounded-2xl border p-6 flex flex-col ${pkg.highlight ? "border-primary bg-card shadow-lg shadow-primary/10" : "border-border bg-card"}`}
+						>
+							{pkg.highlight && (
+								<div class="text-xs font-bold text-primary uppercase tracking-widest mb-4">
+									Phổ biến nhất
+								</div>
+							)}
+							<div class="text-lg font-bold mb-1">{pkg.name}</div>
+							<div class="text-sm text-muted-foreground mb-1">
+								{pkg.vehicle}
+							</div>
+							<div class="text-xs text-muted-foreground mb-5">
+								{pkg.seats} · {pkg.hours}
+							</div>
+							<ul class="flex flex-col gap-2 mb-8 flex-1">
+								{pkg.features.map((f) => (
+									<li class="flex items-start gap-2 text-sm">
+										<CheckCircle
+											size={15}
+											className="text-primary shrink-0 mt-0.5"
+										/>
+										{f}
+									</li>
+								))}
+							</ul>
+							<a
+								href={CONTACT.ZALO_URL}
+								target="_blank"
+								rel="noopener noreferrer"
+								class={`flex items-center justify-center gap-2 font-semibold px-4 py-3 rounded-lg text-sm transition-colors ${pkg.highlight ? "bg-primary text-primary-foreground hover:bg-primary/90" : "border border-border hover:bg-muted/50"}`}
+							>
+								<MessageCircle size={16} />
+								Đặt gói này
+							</a>
+						</div>
+					))
+				}
+			</div>
+			<p class="text-xs text-muted-foreground text-center mt-6">
+				* Liên hệ để nhận báo giá chi tiết theo nhu cầu cụ thể.
+			</p>
+		</div>
+	</section>
+
+	<!-- What's included -->
+	<section class="container mx-auto px-4 py-16 max-w-4xl">
+		<h2 class="text-2xl font-bold mb-8 text-center">Dịch vụ bao gồm</h2>
+		<div class="grid md:grid-cols-2 gap-4">
+			{
+				[
+					"Tài xế mặc vest chuyên nghiệp",
+					"Xe sạch bóng, kiểm tra kỹ trước ngày cưới",
+					"Trang trí hoa tươi nội thất và ngoại thất",
+					"Có mặt trước giờ rước dâu 30 phút",
+					"Phối hợp với ekip chụp ảnh, quay phim",
+					"Hỗ trợ điều phối đoàn xe (gói đoàn xe)",
+					"Hóa đơn VAT theo yêu cầu",
+					"Xe dự phòng trong trường hợp khẩn cấp",
+				].map((item) => (
+					<div class="flex items-start gap-3 rounded-lg border border-border p-4">
+						<CheckCircle size={18} className="text-primary shrink-0 mt-0.5" />
+						<span class="text-sm">{item}</span>
+					</div>
+				))
+			}
+		</div>
+	</section>
+
+	<!-- FAQ -->
+	<section class="border-t border-border bg-muted/20">
+		<div class="container mx-auto px-4 py-16 max-w-3xl">
+			<h2 class="text-2xl font-bold mb-8 text-center">Câu hỏi thường gặp</h2>
+			<div class="flex flex-col divide-y divide-border">
+				{
+					[
+						{
+							q: "Xe cưới có được trang trí hoa không?",
+							a: "Có. Tất cả gói đều bao gồm trang trí hoa tươi trên mui xe và nội thất. Gói Sang Trọng có hoa cao cấp phong phú hơn, phù hợp chụp ảnh chân dung.",
+						},
+						{
+							q: "Nên đặt xe cưới trước bao lâu?",
+							a: "Tối thiểu 2–4 tuần. Mùa cưới (tháng 11–1 và tháng 4–5), các ngày cuối tuần đẹp thường đặt kín 1–2 tháng trước. Liên hệ sớm để chọn xe tốt nhất.",
+						},
+						{
+							q: "Có thể thuê nhiều xe cho đoàn cưới không?",
+							a: "Có. Gói Đoàn Xe từ 2 xe trở lên, đội xe thống nhất màu sắc và trang trí, có nhân viên điều phối đoàn. Phù hợp đám cưới đoàn lớn.",
+						},
+						{
+							q: "Nếu đám cưới kéo dài hơn giờ gói thì tính sao?",
+							a: "Có phí phát sinh ngoài giờ tùy loại xe, được thống nhất trong hợp đồng trước ngày cưới. Không có phí bất ngờ.",
+						},
+					].map(({ q, a }) => (
+						<div class="py-5">
+							<h3 class="font-semibold mb-2">{q}</h3>
+							<p class="text-sm text-muted-foreground leading-relaxed">{a}</p>
+						</div>
+					))
+				}
+			</div>
+		</div>
+	</section>
+
+	<!-- CTA bottom -->
+	<section class="border-t border-border">
+		<div class="container mx-auto px-4 py-16 text-center max-w-xl">
+			<h2 class="text-2xl font-bold mb-3">Tư vấn miễn phí ngay hôm nay</h2>
+			<p class="text-muted-foreground mb-8">
+				Chia sẻ ngày cưới và số lượng khách — chúng tôi tư vấn gói xe phù hợp
+				nhất trong vài phút.
+			</p>
+			<div class="flex flex-col sm:flex-row gap-3 justify-center">
+				<a
+					href={CONTACT.ZALO_URL}
+					target="_blank"
+					rel="noopener noreferrer"
+					class="inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground font-semibold px-7 py-3.5 rounded-lg hover:bg-primary/90 transition-colors"
+				>
+					<MessageCircle size={18} />
+					Nhắn Zalo tư vấn
+				</a>
+				<a
+					href={`tel:${CONTACT.PHONE}`}
+					class="inline-flex items-center justify-center gap-2 border border-border font-semibold px-7 py-3.5 rounded-lg hover:bg-muted/50 transition-colors"
+				>
+					<Phone size={18} />
+					{CONTACT.PHONE_DISPLAY}
+				</a>
+			</div>
+		</div>
+	</section>
+
+	<!-- Mobile sticky CTA -->
+	<div
+		class="fixed bottom-0 inset-x-0 z-40 lg:hidden border-t border-border bg-background/95 backdrop-blur-sm px-4 py-3"
+	>
+		<div class="flex gap-3">
+			<a
+				href={CONTACT.ZALO_URL}
+				target="_blank"
+				rel="noopener noreferrer"
+				class="flex-1 flex items-center justify-center gap-2 bg-primary text-primary-foreground font-semibold py-3 rounded-lg"
+			>
+				<MessageCircle size={18} />
+				Tư vấn Zalo
+			</a>
+			<a
+				href={`tel:${CONTACT.PHONE}`}
+				class="flex items-center justify-center gap-2 border border-border font-semibold px-5 py-3 rounded-lg"
+			>
+				<Phone size={18} />
+			</a>
+		</div>
+	</div>
+</Layout>

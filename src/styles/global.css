@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
+@plugin "@tailwindcss/typography";
 @import "@fontsource-variable/geist";
 
 @custom-variant dark (&:is(.dark *));
@@ -66,24 +67,25 @@
 
 
 :root {
-	--background: oklch(1 0 0);
-	--foreground: oklch(0.145 0 0);
+	--background: oklch(0.975 0 0);
+	--foreground: oklch(0.18 0 0);
 	--card: oklch(1 0 0);
-	--card-foreground: oklch(0.145 0 0);
+	--card-foreground: oklch(0.18 0 0);
 	--popover: oklch(1 0 0);
-	--popover-foreground: oklch(0.145 0 0);
-	--primary: oklch(0.205 0 0);
+	--popover-foreground: oklch(0.18 0 0);
+	--primary: oklch(0.22 0 0);
 	--primary-foreground: oklch(0.985 0 0);
-	--secondary: oklch(0.97 0 0);
-	--secondary-foreground: oklch(0.205 0 0);
-	--muted: oklch(0.97 0 0);
-	--muted-foreground: oklch(0.556 0 0);
-	--accent: oklch(0.97 0 0);
-	--accent-foreground: oklch(0.205 0 0);
+	--secondary: oklch(0.94 0 0);
+	--secondary-foreground: oklch(0.22 0 0);
+	--muted: oklch(0.935 0 0);
+	--muted-foreground: oklch(0.5 0 0);
+	--accent: oklch(0.935 0 0);
+	--accent-foreground: oklch(0.22 0 0);
 	--destructive: oklch(0.577 0.245 27.325);
-	--border: oklch(0.922 0 0);
-	--input: oklch(0.922 0 0);
-	--ring: oklch(0.708 0 0);
+	--border: oklch(0.87 0 0);
+	--input: oklch(0.87 0 0);
+	--ring: oklch(0.65 0 0);
+	--ripple-color: oklch(0 0 0 / 6%);
 	--chart-1: oklch(0.87 0 0);
 	--chart-2: oklch(0.556 0 0);
 	--chart-3: oklch(0.439 0 0);
@@ -101,6 +103,7 @@
 }
 
 .dark {
+	--ripple-color: oklch(1 0 0 / 8%);
 	--background: oklch(0.145 0 0);
 	--foreground: oklch(0.985 0 0);
 	--card: oklch(0.205 0 0);
@@ -136,13 +139,30 @@
 
 @keyframes cell-ripple {
 	0%   { background-color: transparent; }
-	30%  { background-color: oklch(1 0 0 / 8%); }
+	30%  { background-color: var(--ripple-color); }
 	100% { background-color: transparent; }
+}
+
+@keyframes scroll {
+	to {
+		transform: translate(calc(-50% - 0.5rem));
+	}
+}
+
+@layer utilities {
+	.animate-scroll {
+		animation: scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite;
+	}
 }
 
 @layer base {
 	* {
 		@apply border-border outline-ring/50;
+		scrollbar-width: none;
+		-ms-overflow-style: none;
+	}
+	*::-webkit-scrollbar {
+		display: none;
 	}
 	body {
 		@apply bg-background text-foreground;

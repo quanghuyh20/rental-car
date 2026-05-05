@@ -1,0 +1,72 @@
+---
+import type { Locale } from "@/i18n/translations";
+
+interface Props {
+	locale: Locale;
+}
+
+const { locale } = Astro.props;
+
+const faqs =
+	locale === "vi"
+		? [
+				{
+					q: "Thuê xe theo ngày tại TP.HCM giá bao nhiêu?",
+					a: "Nam Thanh Car cho thuê xe theo ngày từ 1.300.000đ (Toyota Vios hoặc Mazda 3, 5 chỗ) đến 7.000.000đ (Hyundai Universe 45 chỗ). Xe 7 chỗ phổ biến như Toyota Innova có giá 1.600.000đ/ngày, Toyota Fortuner 1.900.000đ/ngày, Kia Carnival cao cấp 2.700.000đ/ngày. Giá đã bao gồm bảo hiểm và hỗ trợ 24/7.",
+				},
+				{
+					q: "Thuê xe theo tháng tại TP.HCM có những loại nào?",
+					a: "Nam Thanh Car cung cấp dịch vụ thuê xe theo tháng với mức giá từ 28.000.000đ/tháng (xe 5 chỗ) đến 100.000.000đ/tháng (xe 45 chỗ). Dịch vụ bao gồm bảo hiểm vật chất, bảo dưỡng định kỳ và xe thay thế trong trường hợp sự cố — phù hợp cho doanh nghiệp, văn phòng đại diện và cá nhân có nhu cầu ổn định.",
+				},
+				{
+					q: "Nam Thanh Car có giao xe tận nơi không?",
+					a: "Có. Nam Thanh Car giao xe tận nơi trong toàn TP.HCM và khu vực lân cận (Bình Dương, Đồng Nai, Long An). Quý khách chỉ cần liên hệ qua Zalo hoặc điện thoại 0938 881 891, đội ngũ sẽ sắp xếp giao xe đúng địa điểm và thời gian yêu cầu.",
+				},
+				{
+					q: "Thuê xe có tài xế hay tự lái, loại nào phổ biến hơn?",
+					a: "Cả hai dịch vụ đều được cung cấp. Xe có tài xế phù hợp cho đưa đón sân bay, công tác doanh nghiệp và du lịch không muốn lo chỗ đỗ xe. Xe tự lái (tự lái) phù hợp cho khách có bằng lái và muốn linh hoạt lịch trình. Phần lớn khách doanh nghiệp chọn xe có tài xế theo tháng.",
+				},
+				{
+					q: "Cần chuẩn bị giấy tờ gì khi thuê xe?",
+					a: "Đối với thuê xe tự lái, cần xuất trình CCCD/CMND còn hạn và bằng lái xe phù hợp hạng xe. Đối với thuê xe có tài xế, chỉ cần thông tin liên hệ và xác nhận lịch trình. Doanh nghiệp thuê xe theo tháng cần cung cấp thêm giấy phép kinh doanh để xuất hóa đơn VAT.",
+				},
+			]
+		: [
+				{
+					q: "How much does car rental in Ho Chi Minh City cost per day?",
+					a: "Nam Thanh Car offers daily car rental from 1,300,000 VND/day (Toyota Vios or Mazda 3, 5-seat) to 7,000,000 VND/day (Hyundai Universe 45-seat). Popular 7-seat options: Toyota Innova at 1,600,000 VND/day, Toyota Fortuner at 1,900,000 VND/day, and premium Kia Carnival at 2,700,000 VND/day. All rates include full insurance and 24/7 support.",
+				},
+				{
+					q: "Do you offer monthly car rental in Ho Chi Minh City?",
+					a: "Yes. Monthly car rental is available from 28,000,000 VND/month (5-seat vehicles) to 100,000,000 VND/month (45-seat coach). Monthly packages include comprehensive insurance, routine maintenance, and a replacement vehicle if needed — ideal for businesses and corporate offices.",
+				},
+				{
+					q: "Does Nam Thanh Car offer vehicle delivery in Ho Chi Minh City?",
+					a: "Yes. We deliver vehicles to any location in Ho Chi Minh City and nearby provinces (Binh Duong, Dong Nai, Long An). Contact us via Zalo or call 0938 881 891 to arrange delivery to your preferred address and time.",
+				},
+				{
+					q: "What documents are needed to rent a car in Vietnam?",
+					a: "For self-drive rental, you need a valid Vietnamese ID or passport and an appropriate driver's license (Vietnamese or international). For chauffeur-driven rental, only contact information and trip details are required. Businesses renting monthly should provide a business license to receive a VAT invoice.",
+				},
+		  ];
+---
+
+<section class="border-t border-border">
+	<div class="container mx-auto px-4 py-20">
+		<div class="max-w-3xl mx-auto">
+			<h2 class="text-2xl font-bold mb-10">
+				{locale === "vi" ? "Câu hỏi thường gặp" : "Frequently Asked Questions"}
+			</h2>
+			<dl class="divide-y divide-border">
+				{
+					faqs.map(({ q, a }) => (
+						<div class="py-6">
+							<dt class="text-base font-semibold mb-3">{q}</dt>
+							<dd class="text-sm text-muted-foreground leading-relaxed">{a}</dd>
+						</div>
+					))
+				}
+			</dl>
+		</div>
+	</div>
+</section>

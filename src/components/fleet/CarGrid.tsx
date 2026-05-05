@@ -1,7 +1,6 @@
 import { useState } from "react";
-import { CarIcon, MessageCircle } from "lucide-react";
+import { CarIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { CONTACT } from "@/lib/constants";
 
 type CarData = {
 	name: string;
@@ -18,6 +17,7 @@ type CarData = {
 type Car = {
 	id: string;
 	data: CarData;
+	detailUrl: string;
 };
 
 type T = {
@@ -33,53 +33,48 @@ type T = {
 	perMonth: string;
 	bookNow: string;
 	askPrice: string;
+	viewDetails: string;
 	allCars: string;
 	filter4Seats: string;
 	filter7Seats: string;
+	filter16Plus: string;
 };
 
 function formatPrice(n: number) {
 	return n.toLocaleString("vi-VN") + "đ";
 }
 
-const FILTERS = [
-	{ key: "all", seats: 0 },
-	{ key: "filter4Seats", seats: 4 },
-	{ key: "filter7Seats", seats: 7 },
-] as const;
+type FilterKey = "all" | "filter4Seats" | "filter7Seats" | "filter16Plus";
+
+const FILTERS: { key: FilterKey; label: keyof T; match: (seats: number) => boolean }[] = [
+	{ key: "all", label: "allCars", match: () => true },
+	{ key: "filter4Seats", label: "filter4Seats", match: (s) => s <= 5 },
+	{ key: "filter7Seats", label: "filter7Seats", match: (s) => s === 7 },
+	{ key: "filter16Plus", label: "filter16Plus", match: (s) => s >= 16 },
+];
 
 export function CarGrid({ cars, t }: { cars: Car[]; t: T }) {
-	const [activeFilter, setActiveFilter] = useState<0 | 4 | 7>(0);
+	const [activeFilter, setActiveFilter] = useState<FilterKey>("all");
 
-	const filtered =
-		activeFilter === 0
-			? cars
-			: cars.filter((c) => c.data.seats === activeFilter);
+	const currentFilter = FILTERS.find((f) => f.key === activeFilter)!;
+	const filtered = cars.filter((c) => currentFilter.match(c.data.seats));
 
 	return (
 		<div>
 			{/* Filter tabs */}
 			<div className="flex gap-2 mb-8">
-				{FILTERS.map(({ key, seats }) => (
+				{FILTERS.map(({ key, label }) => (
 					<button
 						key={key}
-						onClick={() => setActiveFilter(seats as 0 | 4 | 7)}
+						onClick={() => setActiveFilter(key)}
 						className={cn(
 							"px-4 py-1.5 rounded-full text-sm font-medium border transition-colors",
-							activeFilter === seats
+							activeFilter === key
 								? "bg-primary text-primary-foreground border-primary"
 								: "border-border text-muted-foreground hover:text-foreground hover:border-foreground",
 						)}
 					>
-						{
-							t[
-								key === "all"
-									? "allCars"
-									: key === "filter4Seats"
-										? "filter4Seats"
-										: "filter7Seats"
-							]
-						}
+						{t[label]}
 					</button>
 				))}
 			</div>
@@ -87,18 +82,22 @@ export function CarGrid({ cars, t }: { cars: Car[]; t: T }) {
 			{/* Grid */}
 			<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 				{filtered.map((car) => (
-					<div
+					<a
 						key={car.id}
-						className="rounded-xl border border-border bg-card overflow-hidden hover:border-primary/50 transition-colors flex flex-col"
+						href={car.detailUrl}
+						className="rounded-xl border border-border bg-card overflow-hidden hover:border-primary/50 transition-colors flex flex-col group"
 					>
 						{/* Image */}
-						<div className="aspect-video bg-muted/50 flex items-center justify-center">
+						<div className="aspect-[16/10] bg-muted/30 flex items-center justify-center p-4">
 							{car.data.images.length > 0 ? (
 								<img
 									src={car.data.images[0]}
-									alt={car.data.name}
-									className="w-full h-full object-cover"
+									alt={`Thuê xe ${car.data.name} ${car.data.seats} ${t.seats} tại TP.HCM`}
+									className="w-full h-full object-contain drop-shadow-lg group-hover:scale-105 transition-transform"
 									loading="lazy"
+									decoding="async"
+									width={600}
+									height={338}
 								/>
 							) : (
 								<CarIcon
@@ -153,17 +152,11 @@ export function CarGrid({ cars, t }: { cars: Car[]; t: T }) {
 							</div>
 
 							{/* CTA */}
-							<a
-								href={CONTACT.ZALO_URL}
-								target="_blank"
-								rel="noopener noreferrer"
-								className="mt-4 inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground text-sm font-semibold px-4 py-2.5 rounded-lg hover:bg-primary/90 transition-colors"
-							>
-								<MessageCircle size={16} />
-								{car.data.available ? t.bookNow : t.askPrice}
-							</a>
+							<span className="mt-4 inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground text-sm font-semibold px-4 py-2.5 rounded-lg group-hover:bg-primary/90 transition-colors">
+								{t.viewDetails}
+							</span>
 						</div>
-					</div>
+					</a>
 				))}
 			</div>
 		</div>

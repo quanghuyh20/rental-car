@@ -1,0 +1,16 @@
+{
+	"name": "car-rental-site",
+	"account_id": "739cbf2c9501c01a31467061a93332d4",
+	"compatibility_date": "2026-04-19",
+	"compatibility_flags": [
+		"nodejs_compat",
+		"global_fetch_strictly_public"
+	],
+	"assets": {
+		"binding": "ASSETS",
+		"directory": "./dist"
+	},
+	"observability": {
+		"enabled": true
+	}
+}

@@ -11,5 +11,62 @@ const locale = getLocaleFromUrl(Astro.url);
 	description="Nam Thanh Trading & Transport Service Co. – 8+ years of trusted car rental in Ho Chi Minh City. Trustworthy, Safe, Professional."
 	routeKey="about"
 >
+	<script slot="head" type="application/ld+json" set:html={JSON.stringify({
+		"@context": "https://schema.org",
+		"@graph": [
+			{
+				"@type": "AboutPage",
+				"@id": "https://namthanhcar.net/en/about/#webpage",
+				"name": "About – Nam Thanh Car",
+				"description": "Nam Thanh Trading & Transport Service Co. – 8+ years of trusted car rental in Ho Chi Minh City. Trustworthy, Safe, Professional.",
+				"url": "https://namthanhcar.net/en/about/",
+				"inLanguage": "en",
+				"about": { "@id": "https://namthanhcar.net/#business" },
+				"publisher": { "@id": "https://namthanhcar.net/#business" },
+				"isPartOf": { "@id": "https://namthanhcar.net/#website" }
+			},
+			{
+				"@type": ["AutoRental", "LocalBusiness"],
+				"@id": "https://namthanhcar.net/#business",
+				"name": "Nam Thanh Car",
+				"legalName": "Nam Thanh Trading & Transport Service Co., Ltd",
+				"url": "https://namthanhcar.net/",
+				"logo": {
+					"@type": "ImageObject",
+					"url": "https://namthanhcar.net/logo.webp",
+					"width": 400,
+					"height": 214
+				},
+				"foundingDate": "2016",
+				"slogan": "Trustworthy – Safe – Professional",
+				"description": "Car rental service in Ho Chi Minh City since 2016. Fleet of 5–45 seat vehicles, professional drivers, free delivery, full insurance.",
+				"knowsAbout": [
+					"Daily car rental in Ho Chi Minh City",
+					"Monthly car rental for businesses",
+					"Passenger transport",
+					"Tan Son Nhat airport transfers",
+					"Wedding car rental"
+				],
+				"numberOfEmployees": {
+					"@type": "QuantitativeValue",
+					"minValue": 5,
+					"maxValue": 20
+				},
+				"telephone": "+84938881891",
+				"email": "Carnamthanh@gmail.com",
+				"address": {
+					"@type": "PostalAddress",
+					"streetAddress": "E8/221/A20 QL50",
+					"addressLocality": "Binh Hung, Binh Chanh",
+					"addressRegion": "Ho Chi Minh City",
+					"addressCountry": "VN"
+				},
+				"sameAs": [
+					"https://www.facebook.com/carnamthanh",
+					"https://maps.app.goo.gl/hwb7G7R8wxmGdWJy5"
+				]
+			}
+		]
+	})} />
 	<AboutPageContent locale={locale} />
 </Layout>

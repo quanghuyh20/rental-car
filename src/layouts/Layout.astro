@@ -5,18 +5,34 @@ import Footer from "@/components/layout/Footer.astro";
 import { getLocaleFromUrl } from "@/i18n/translations";
 import { PATHS, type RouteKey } from "@/i18n/paths";
 
+type BreadcrumbItem = { name: string; url: string };
+
 interface Props {
 	title: string;
 	description?: string;
 	image?: string;
 	routeKey?: RouteKey;
+	disableHreflang?: boolean;
+	ogType?: string;
+	/** Override breadcrumb items. If omitted, auto-generated from routeKey. */
+	breadcrumbItems?: BreadcrumbItem[];
 }
+
+const ROUTE_LABELS: Record<string, { vi: string; en: string }> = {
+	fleet: { vi: "Xe cho thuê", en: "Car Rental" },
+	about: { vi: "Giới thiệu", en: "About" },
+	contact: { vi: "Liên hệ", en: "Contact" },
+	blog: { vi: "Blog", en: "Blog" },
+};
 
 const {
 	title,
 	description = "Dịch vụ thuê xe uy tín tại TP.HCM – Nam Thanh Car. Thuê xe theo ngày, theo tháng với tài xế chuyên nghiệp.",
-	image = "/og-image.jpg",
+	image = "/og-image.webp",
 	routeKey = "home",
+	disableHreflang = false,
+	ogType = "website",
+	breadcrumbItems,
 } = Astro.props;
 
 const locale = getLocaleFromUrl(Astro.url);
@@ -24,10 +40,25 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
 const viHref = new URL(PATHS[routeKey].vi, Astro.site);
 const enHref = new URL(`/en${PATHS[routeKey].en}`, Astro.site);
+
+// Auto-generate 2-level breadcrumb for non-home pages, unless overridden
+const home = {
+	name: locale === "vi" ? "Trang chủ" : "Home",
+	url:
+		locale === "vi"
+			? "https://namthanhcar.net/"
+			: "https://namthanhcar.net/en/",
+};
+const autoLabel = ROUTE_LABELS[routeKey]?.[locale];
+const breadcrumbs: BreadcrumbItem[] | null =
+	breadcrumbItems ??
+	(routeKey !== "home" && autoLabel
+		? [home, { name: autoLabel, url: canonicalURL.href }]
+		: null);
 ---
 
 <!doctype html>
-<html lang={locale} class="dark">
+<html lang={locale}>
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -39,7 +70,7 @@ const enHref = new URL(`/en${PATHS[routeKey].en}`, Astro.site);
 		<link rel="canonical" href={canonicalURL} />
 
 		<!-- Open Graph -->
-		<meta property="og:type" content="website" />
+		<meta property="og:type" content={ogType} />
 		<meta property="og:url" content={canonicalURL} />
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
@@ -53,11 +84,39 @@ const enHref = new URL(`/en${PATHS[routeKey].en}`, Astro.site);
 		<meta name="twitter:image" content={new URL(image, Astro.site)} />
 
 		<!-- hreflang -->
-		<link rel="alternate" hreflang="vi" href={viHref} />
-		<link rel="alternate" hreflang="en" href={enHref} />
-		<link rel="alternate" hreflang="x-default" href={viHref} />
+		{
+			!disableHreflang && (
+				<>
+					<link rel="alternate" hreflang="vi-VN" href={viHref} />
+					<link rel="alternate" hreflang="en" href={enHref} />
+					<link rel="alternate" hreflang="x-default" href={viHref} />
+				</>
+			)
+		}
+
+		{
+			breadcrumbs && (
+				<script
+					type="application/ld+json"
+					set:html={JSON.stringify({
+						"@context": "https://schema.org",
+						"@type": "BreadcrumbList",
+						itemListElement: breadcrumbs.map((item, i) => ({
+							"@type": "ListItem",
+							position: i + 1,
+							name: item.name,
+							item: item.url,
+						})),
+					})}
+				/>
+			)
+		}
 
 		<slot name="head" />
+		<script is:inline>
+			const t = localStorage.getItem("theme");
+			if (t === "dark") document.documentElement.classList.add("dark");
+		</script>
 	</head>
 	<body class="min-h-screen bg-background text-foreground antialiased">
 		<Navbar routeKey={routeKey} />

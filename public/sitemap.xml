@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <!-- Homepages -->
+  <url>
+    <loc>https://namthanhcar.net/</loc>
+    <lastmod>2026-05-03</lastmod>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://namthanhcar.net/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://namthanhcar.net/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://namthanhcar.net/"/>
+  </url>
+  <url>
+    <loc>https://namthanhcar.net/en/</loc>
+    <lastmod>2026-05-03</lastmod>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://namthanhcar.net/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://namthanhcar.net/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://namthanhcar.net/"/>
+  </url>
+
+  <!-- Fleet index -->
+  <url>
+    <loc>https://namthanhcar.net/xe</loc>
+    <lastmod>2026-05-03</lastmod>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://namthanhcar.net/xe"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://namthanhcar.net/en/car-rental"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://namthanhcar.net/xe"/>
+  </url>
+  <url>
+    <loc>https://namthanhcar.net/en/car-rental</loc>
+    <lastmod>2026-05-03</lastmod>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://namthanhcar.net/xe"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://namthanhcar.net/en/car-rental"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://namthanhcar.net/xe"/>
+  </url>
+
+  <!-- Car detail pages -->
+  <url>
+    <loc>https://namthanhcar.net/xe/ford-transit</loc>
+    <lastmod>2026-05-03</lastmod>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://namthanhcar.net/xe/ford-transit"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://namthanhcar.net/en/car-rental/ford-transit"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://namthanhcar.net/xe/ford-transit"/>
+  </url>
+  <url>
+    <loc>https://namthanhcar.net/en/car-rental/ford-transit</loc>
+    <lastmod>2026-05-03</lastmod>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://namthanhcar.net/xe/ford-transit"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://namthanhcar.net/en/car-rental/ford-transit"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://namthanhcar.net/xe/ford-transit"/>
+  </url>
+
+  <url>
+    <loc>https://namthanhcar.net/xe/hyundai-solati</loc>
+    <lastmod>2026-05-03</lastmod>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://namthanhcar.net/xe/hyundai-solati"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://namthanhcar.net/en/car-rental/hyundai-solati"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://namthanhcar.net/xe/hyundai-solati"/>
+  </url>
+  <url>
+    <loc>https://namthanhcar.net/en/car-rental/hyundai-solati</loc>
+    <lastmod>2026-05-03</lastmod>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://namthanhcar.net/xe/hyundai-solati"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://namthanhcar.net/en/car-rental/hyundai-solati"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://namthanhcar.net/xe/hyundai-solati"/>
+  </url>
+
+  <url>
+    <loc>https://namthanhcar.net/xe/hyundai-universe-29</loc>
+    <lastmod>2026-05-03</lastmod>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://namthanhcar.net/xe/hyundai-universe-29"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://namthanhcar.net/en/car-rental/hyundai-universe-29"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://namthanhcar.net/xe/hyundai-universe-29"/>
+  </url>
+  <url>
+    <loc>https://namthanhcar.net/en/car-rental/hyundai-universe-29</loc>
+    <lastmod>2026-05-03</lastmod>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://namthanhcar.net/xe/hyundai-universe-29"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://namthanhcar.net/en/car-rental/hyundai-universe-29"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://namthanhcar.net/xe/hyundai-universe-29"/>
+  </url>
+
+  <url>
+    <loc>https://namthanhcar.net/xe/hyundai-universe-45</loc>
+    <lastmod>2026-05-03</lastmod>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://namthanhcar.net/xe/hyundai-universe-45"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://namthanhcar.net/en/car-rental/hyundai-universe-45"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://namthanhcar.net/xe/hyundai-universe-45"/>
+  </url>
+  <url>
+    <loc>https://namthanhcar.net/en/car-rental/hyundai-universe-45</loc>
+    <lastmod>2026-05-03</lastmod>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://namthanhcar.net/xe/hyundai-universe-45"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://namthanhcar.net/en/car-rental/hyundai-universe-45"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://namthanhcar.net/xe/hyundai-universe-45"/>
+  </url>
+
+  <url>
+    <loc>https://namthanhcar.net/xe/kia-carnival</loc>
+    <lastmod>2026-05-03</lastmod>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://namthanhcar.net/xe/kia-carnival"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://namthanhcar.net/en/car-rental/kia-carnival"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://namthanhcar.net/xe/kia-carnival"/>
+  </url>
+  <url>
+    <loc>https://namthanhcar.net/en/car-rental/kia-carnival</loc>
+    <lastmod>2026-05-03</lastmod>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://namthanhcar.net/xe/kia-carnival"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://namthanhcar.net/en/car-rental/kia-carnival"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://namthanhcar.net/xe/kia-carnival"/>
+  </url>
+
+  <url>
+    <loc>https://namthanhcar.net/xe/kia-sedona</loc>
+    <lastmod>2026-05-03</lastmod>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://namthanhcar.net/xe/kia-sedona"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://namthanhcar.net/en/car-rental/kia-sedona"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://namthanhcar.net/xe/kia-sedona"/>
+  </url>
+  <url>
+    <loc>https://namthanhcar.net/en/car-rental/kia-sedona</loc>
+    <lastmod>2026-05-03</lastmod>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://namthanhcar.net/xe/kia-sedona"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://namthanhcar.net/en/car-rental/kia-sedona"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://namthanhcar.net/xe/kia-sedona"/>
+  </url>
+
+  <url>
+    <loc>https://namthanhcar.net/xe/mazda-3</loc>
+    <lastmod>2026-05-03</lastmod>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://namthanhcar.net/xe/mazda-3"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://namthanhcar.net/en/car-rental/mazda-3"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://namthanhcar.net/xe/mazda-3"/>
+  </url>
+  <url>
+    <loc>https://namthanhcar.net/en/car-rental/mazda-3</loc>
+    <lastmod>2026-05-03</lastmod>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://namthanhcar.net/xe/mazda-3"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://namthanhcar.net/en/car-rental/mazda-3"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://namthanhcar.net/xe/mazda-3"/>
+  </url>
+
+  <url>
+    <loc>https://namthanhcar.net/xe/toyota-fortuner</loc>
+    <lastmod>2026-05-03</lastmod>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://namthanhcar.net/xe/toyota-fortuner"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://namthanhcar.net/en/car-rental/toyota-fortuner"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://namthanhcar.net/xe/toyota-fortuner"/>
+  </url>
+  <url>
+    <loc>https://namthanhcar.net/en/car-rental/toyota-fortuner</loc>
+    <lastmod>2026-05-03</lastmod>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://namthanhcar.net/xe/toyota-fortuner"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://namthanhcar.net/en/car-rental/toyota-fortuner"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://namthanhcar.net/xe/toyota-fortuner"/>
+  </url>
+
+  <url>
+    <loc>https://namthanhcar.net/xe/toyota-innova</loc>
+    <lastmod>2026-05-03</lastmod>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://namthanhcar.net/xe/toyota-innova"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://namthanhcar.net/en/car-rental/toyota-innova"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://namthanhcar.net/xe/toyota-innova"/>
+  </url>
+  <url>
+    <loc>https://namthanhcar.net/en/car-rental/toyota-innova</loc>
+    <lastmod>2026-05-03</lastmod>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://namthanhcar.net/xe/toyota-innova"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://namthanhcar.net/en/car-rental/toyota-innova"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://namthanhcar.net/xe/toyota-innova"/>
+  </url>
+
+  <url>
+    <loc>https://namthanhcar.net/xe/toyota-vios</loc>
+    <lastmod>2026-05-03</lastmod>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://namthanhcar.net/xe/toyota-vios"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://namthanhcar.net/en/car-rental/toyota-vios"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://namthanhcar.net/xe/toyota-vios"/>
+  </url>
+  <url>
+    <loc>https://namthanhcar.net/en/car-rental/toyota-vios</loc>
+    <lastmod>2026-05-03</lastmod>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://namthanhcar.net/xe/toyota-vios"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://namthanhcar.net/en/car-rental/toyota-vios"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://namthanhcar.net/xe/toyota-vios"/>
+  </url>
+
+  <!-- About -->
+  <url>
+    <loc>https://namthanhcar.net/gioi-thieu</loc>
+    <lastmod>2026-05-03</lastmod>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://namthanhcar.net/gioi-thieu"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://namthanhcar.net/en/about"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://namthanhcar.net/gioi-thieu"/>
+  </url>
+  <url>
+    <loc>https://namthanhcar.net/en/about</loc>
+    <lastmod>2026-05-03</lastmod>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://namthanhcar.net/gioi-thieu"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://namthanhcar.net/en/about"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://namthanhcar.net/gioi-thieu"/>
+  </url>
+
+  <!-- Contact -->
+  <url>
+    <loc>https://namthanhcar.net/lien-he</loc>
+    <lastmod>2026-05-03</lastmod>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://namthanhcar.net/lien-he"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://namthanhcar.net/en/contact"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://namthanhcar.net/lien-he"/>
+  </url>
+  <url>
+    <loc>https://namthanhcar.net/en/contact</loc>
+    <lastmod>2026-05-03</lastmod>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://namthanhcar.net/lien-he"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://namthanhcar.net/en/contact"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://namthanhcar.net/lien-he"/>
+  </url>
+
+  <!-- Blog index -->
+  <url>
+    <loc>https://namthanhcar.net/blog</loc>
+    <lastmod>2025-04-20</lastmod>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://namthanhcar.net/blog"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://namthanhcar.net/en/blog"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://namthanhcar.net/blog"/>
+  </url>
+  <url>
+    <loc>https://namthanhcar.net/en/blog</loc>
+    <lastmod>2025-04-20</lastmod>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://namthanhcar.net/blog"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://namthanhcar.net/en/blog"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://namthanhcar.net/blog"/>
+  </url>
+
+  <!-- Blog posts (Vietnamese only - no EN equivalents discovered) -->
+  <url>
+    <loc>https://namthanhcar.net/blog/kinh-nghiem-thue-xe-tu-lai</loc>
+    <lastmod>2025-04-20</lastmod>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://namthanhcar.net/blog/kinh-nghiem-thue-xe-tu-lai"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://namthanhcar.net/blog/kinh-nghiem-thue-xe-tu-lai"/>
+  </url>
+  <url>
+    <loc>https://namthanhcar.net/blog/thue-xe-theo-thang-hay-theo-ngay</loc>
+    <lastmod>2025-04-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://namthanhcar.net/blog/thue-xe-theo-thang-hay-theo-ngay"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://namthanhcar.net/blog/thue-xe-theo-thang-hay-theo-ngay"/>
+  </url>
+  <url>
+    <loc>https://namthanhcar.net/blog/top-5-dia-diem-du-lich-gan-tphcm</loc>
+    <lastmod>2025-04-10</lastmod>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://namthanhcar.net/blog/top-5-dia-diem-du-lich-gan-tphcm"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://namthanhcar.net/blog/top-5-dia-diem-du-lich-gan-tphcm"/>
+  </url>
+
+</urlset>

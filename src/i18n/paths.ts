@@ -1,10 +1,11 @@
 import type { Locale } from './translations';
 
 export const PATHS = {
-	home:    { vi: '/',            en: '/' },
-	fleet:   { vi: '/xe',         en: '/car-rental' },
-	about:   { vi: '/gioi-thieu', en: '/about' },
-	contact: { vi: '/lien-he',    en: '/contact' },
+	home:    { vi: '/',             en: '/' },
+	fleet:   { vi: '/xe/',          en: '/car-rental/' },
+	about:   { vi: '/gioi-thieu/',  en: '/about/' },
+	contact: { vi: '/lien-he/',     en: '/contact/' },
+	blog:    { vi: '/blog/',        en: '/blog/' },
 } as const;
 
 export type RouteKey = keyof typeof PATHS;

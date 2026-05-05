@@ -1,0 +1,35 @@
+---
+import { MessageCircle } from "lucide-react";
+import { CONTACT } from "@/lib/constants";
+import type { Locale } from "@/i18n/translations";
+import { useTranslations } from "@/i18n/translations";
+
+interface Props {
+	locale: Locale;
+	cta?: {
+		discriminant: boolean;
+		value?: { text: string; href: string };
+	};
+}
+
+const { locale, cta } = Astro.props;
+const t = useTranslations(locale);
+
+const hasCustomCta = cta?.discriminant && cta.value?.text && cta.value?.href;
+const ctaText = hasCustomCta ? cta.value!.text : t.cta.zalo;
+const ctaHref = hasCustomCta ? cta.value!.href : CONTACT.ZALO_URL;
+---
+
+<div class="mt-16 rounded-xl border border-border bg-card p-8 text-center">
+	<h3 class="text-xl font-semibold mb-2">{t.cta.title}</h3>
+	<p class="text-muted-foreground mb-6">{t.cta.subtitle}</p>
+	<a
+		href={ctaHref}
+		target="_blank"
+		rel="noopener noreferrer"
+		class="inline-flex items-center gap-2 bg-primary text-primary-foreground font-medium px-6 py-3 rounded-lg hover:bg-primary/90 transition-colors"
+	>
+		<MessageCircle className="w-5 h-5" />
+		{ctaText}
+	</a>
+</div>

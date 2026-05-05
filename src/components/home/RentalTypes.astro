@@ -2,6 +2,7 @@
 import { ArrowRight, CalendarDays, CalendarRange } from 'lucide-react';
 import { useTranslations, type Locale } from '@/i18n/translations';
 import { localePath } from '@/i18n/paths';
+import { GlowingEffect } from '@/components/ui/glowing-effect';
 
 interface Props {
 	locale: Locale;
@@ -19,7 +20,8 @@ const t = useTranslations(locale);
 
 		<div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
 			<!-- Daily -->
-			<div class="rounded-xl border border-border bg-card p-8">
+			<div class="relative rounded-xl border border-border bg-card p-8">
+				<GlowingEffect disabled={false} spread={40} proximity={64} className="rounded-xl" client:load />
 				<div class="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center mb-5">
 					<CalendarDays size={24} class="text-primary" strokeWidth={1.5} />
 				</div>
@@ -35,7 +37,8 @@ const t = useTranslations(locale);
 			</div>
 
 			<!-- Monthly (popular) -->
-			<div class="rounded-xl border border-primary/30 bg-card p-8 relative">
+			<div class="relative rounded-xl border border-primary/30 bg-card p-8">
+				<GlowingEffect disabled={false} spread={40} proximity={64} className="rounded-xl" client:load />
 				<div class="absolute top-4 right-4 text-xs bg-primary text-primary-foreground px-2 py-0.5 rounded-full font-medium">
 					{locale === 'vi' ? 'Phổ biến' : 'Popular'}
 				</div>

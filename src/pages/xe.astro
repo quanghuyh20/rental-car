@@ -13,5 +13,57 @@ const allCars = await getCollection("cars");
 	description="Bảng giá thuê xe tại TP.HCM: Toyota Innova, Fortuner, Kia Carnival, Sedona, Vios, Mazda 3. Giá từ 1.300.000đ/ngày."
 	routeKey="fleet"
 >
+	<script slot="head" type="application/ld+json" set:html={JSON.stringify({
+		"@context": "https://schema.org",
+		"@type": "ItemList",
+		"name": "Bảng giá xe cho thuê – Nam Thanh Car",
+		"description": "Danh sách xe cho thuê tại TP.HCM với giá theo ngày và theo tháng",
+		"url": "https://namthanhcar.net/xe/",
+		"numberOfItems": allCars.length,
+		"itemListElement": allCars.map((car, i) => ({
+			"@type": "ListItem",
+			"position": i + 1,
+			"item": {
+				"@type": "Product",
+				"name": `${car.data.name} – Thuê xe ${car.data.seats} chỗ TP.HCM`,
+				"description": `Thuê xe ${car.data.name} ${car.data.seats} chỗ tại TP.HCM`,
+				"brand": { "@type": "Brand", "name": car.data.name.split(" ")[0] },
+				"url": `https://namthanhcar.net/xe/${car.id}/`,
+				"offers": {
+					"@type": "AggregateOffer",
+					"priceCurrency": "VND",
+					"lowPrice": car.data.pricePerDay,
+					"highPrice": car.data.pricePerMonth,
+					"offerCount": 2,
+					"offers": [
+						{
+							"@type": "Offer",
+							"name": "Thuê ngày",
+							"price": car.data.pricePerDay,
+							"priceCurrency": "VND",
+							"priceSpecification": {
+								"@type": "UnitPriceSpecification",
+								"price": car.data.pricePerDay,
+								"priceCurrency": "VND",
+								"unitCode": "DAY"
+							}
+						},
+						{
+							"@type": "Offer",
+							"name": "Thuê tháng",
+							"price": car.data.pricePerMonth,
+							"priceCurrency": "VND",
+							"priceSpecification": {
+								"@type": "UnitPriceSpecification",
+								"price": car.data.pricePerMonth,
+								"priceCurrency": "VND",
+								"unitCode": "MON"
+							}
+						}
+					]
+				}
+			}
+		}))
+	})} />
 	<FleetPageContent locale={locale} cars={allCars} />
 </Layout>

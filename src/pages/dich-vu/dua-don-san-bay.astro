@@ -1,0 +1,430 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { Image } from "astro:assets";
+import airportCover from "@/assets/services/airport-banner.webp";
+import { CONTACT } from "@/lib/constants";
+import {
+	Plane,
+	Clock,
+	ShieldCheck,
+	MapPin,
+	Phone,
+	MessageCircle,
+	CheckCircle,
+	Users,
+} from "lucide-react";
+
+const canonicalUrl = "https://namthanhcar.net/dich-vu/dua-don-san-bay/";
+
+const vehicles = [
+	{ name: "Toyota Vios / Mazda 3", seats: 4, luggage: "2 vali" },
+	{ name: "Toyota Innova / Kia Sedona", seats: 6, luggage: "4 vali" },
+	{ name: "Kia Carnival", seats: 7, luggage: "5 vali" },
+	{ name: "Ford Transit 18 chỗ", seats: 17, luggage: "Nhiều hành lý" },
+];
+
+const steps = [
+	{
+		n: "01",
+		title: "Đặt xe trước 2–24h",
+		desc: "Nhắn Zalo hoặc gọi điện, báo giờ bay, điểm đón và số lượng khách.",
+	},
+	{
+		n: "02",
+		title: "Xác nhận & báo giá",
+		desc: "Nhân viên phản hồi trong 15 phút, xác nhận xe và báo giá trọn gói.",
+	},
+	{
+		n: "03",
+		title: "Tài xế đón đúng giờ",
+		desc: "Tài xế theo dõi chuyến bay thực tế, chủ động điều chỉnh nếu bay trễ hoặc sớm.",
+	},
+	{
+		n: "04",
+		title: "An toàn đến nơi",
+		desc: "Giao xe tận điểm đến, hỗ trợ khuân vác hành lý, thanh toán linh hoạt tiền mặt hoặc chuyển khoản.",
+	},
+];
+---
+
+<Layout
+	title="Dịch vụ đưa đón sân bay Tân Sơn Nhất – Nam Thanh Car"
+	description="Đặt xe đưa đón sân bay Tân Sơn Nhất tại TP.HCM. Tài xế kinh nghiệm, theo dõi chuyến bay thực tế, đúng giờ 100%. Liên hệ báo giá. Hotline: 0938 881 891."
+	routeKey="home"
+	disableHreflang={true}
+	breadcrumbItems={[
+		{ name: "Trang chủ", url: "https://namthanhcar.net/" },
+		{ name: "Dịch vụ", url: "https://namthanhcar.net/dich-vu/" },
+		{ name: "Đưa đón sân bay", url: canonicalUrl },
+	]}
+>
+	<Fragment slot="head">
+		<link rel="canonical" href={canonicalUrl} />
+		<link rel="alternate" hreflang="vi-VN" href={canonicalUrl} />
+		<link rel="alternate" hreflang="x-default" href={canonicalUrl} />
+		<script
+			type="application/ld+json"
+			set:html={JSON.stringify({
+				"@context": "https://schema.org",
+				"@graph": [
+					{
+						"@type": "Service",
+						"@id": `${canonicalUrl}#service`,
+						name: "Dịch vụ đưa đón sân bay Tân Sơn Nhất",
+						description:
+							"Đưa đón sân bay Tân Sơn Nhất TP.HCM với đội xe 5–18 chỗ. Tài xế theo dõi giờ bay thực tế, đúng giờ 100%, giá cố định trọn gói.",
+						serviceType: "Airport Transfer",
+						provider: { "@id": "https://namthanhcar.net/#business" },
+						areaServed: { "@type": "City", name: "Thành phố Hồ Chí Minh" },
+						url: canonicalUrl,
+						offers: {
+							"@type": "Offer",
+							description:
+								"Giá cố định theo tuyến, bao gồm tài xế và nhiên liệu. Liên hệ để nhận báo giá.",
+						},
+					},
+					{
+						"@type": "FAQPage",
+						mainEntity: [
+							{
+								"@type": "Question",
+								name: "Xe đưa đón sân bay có theo dõi chuyến bay không?",
+								acceptedAnswer: {
+									"@type": "Answer",
+									text: "Có. Tài xế Nam Thanh Car theo dõi giờ bay thực tế qua FlightAware. Nếu chuyến bay trễ hoặc sớm, tài xế tự điều chỉnh giờ đón mà không tính phí thêm.",
+								},
+							},
+							{
+								"@type": "Question",
+								name: "Đặt xe đưa đón sân bay trước bao lâu?",
+								acceptedAnswer: {
+									"@type": "Answer",
+									text: "Nên đặt trước tối thiểu 2 giờ. Với đoàn đông hoặc chuyến bay sáng sớm, khuyến nghị đặt trước 1 ngày để đảm bảo có xe.",
+								},
+							},
+							{
+								"@type": "Question",
+								name: "Giá đưa đón sân bay Tân Sơn Nhất là bao nhiêu?",
+								acceptedAnswer: {
+									"@type": "Answer",
+									text: "Giá từ 350.000đ cho xe 4 chỗ trong nội thành Q.1–Q.3, tính đến điểm giao. Giá cố định trọn gói, không phát sinh theo km. Liên hệ 0938 881 891 để nhận báo giá theo địa chỉ cụ thể.",
+								},
+							},
+							{
+								"@type": "Question",
+								name: "Tài xế có hỗ trợ khuân vác hành lý không?",
+								acceptedAnswer: {
+									"@type": "Answer",
+									text: "Có. Tài xế hỗ trợ khuân vác hành lý tại sân bay và điểm đến. Dịch vụ trọn gói không tính thêm phí.",
+								},
+							},
+						],
+					},
+				],
+			})}
+		/>
+	</Fragment>
+
+	<!-- Hero -->
+	<section class="relative min-h-[70vh] flex items-center overflow-hidden">
+		<Image
+			src={airportCover}
+			alt="Dịch vụ đưa đón sân bay Tân Sơn Nhất – Nam Thanh Car"
+			class="absolute inset-0 w-full h-full object-cover"
+			loading="eager"
+			fetchpriority="high"
+		/>
+		<div class="absolute inset-0 bg-black/50"></div>
+		<div
+			class="absolute inset-0 bg-linear-to-t from-background via-background/5 to-transparent"
+		>
+		</div>
+
+		<div
+			class="relative z-10 container mx-auto px-4 py-20 text-center max-w-3xl"
+		>
+			<div
+				class="inline-flex items-center gap-2 text-xs font-semibold tracking-widest uppercase text-white/90 border border-white/30 rounded-full px-4 py-1.5 mb-6"
+			>
+				<Plane size={14} />
+				Sân bay Tân Sơn Nhất
+			</div>
+			<h1 class="text-4xl md:text-5xl font-bold tracking-tight mb-5 text-white">
+				Đưa đón sân bay<br />TP.HCM uy tín
+			</h1>
+			<p class="text-lg text-white/80 mb-8 max-w-xl mx-auto">
+				Tài xế theo dõi giờ bay thực tế, đúng giờ tuyệt đối. Giá cố định trọn
+				gói — không phát sinh, không tính theo km.
+			</p>
+			<div class="flex flex-col sm:flex-row gap-3 justify-center">
+				<a
+					href={CONTACT.ZALO_URL}
+					target="_blank"
+					rel="noopener noreferrer"
+					class="inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground font-semibold px-7 py-3.5 rounded-lg hover:bg-primary/90 transition-colors"
+				>
+					<MessageCircle size={18} />
+					Đặt xe qua Zalo
+				</a>
+				<a
+					href={`tel:${CONTACT.PHONE}`}
+					class="inline-flex items-center justify-center gap-2 bg-white/15 backdrop-blur-sm border border-white/30 text-white font-semibold px-7 py-3.5 rounded-lg hover:bg-white/25 transition-colors"
+				>
+					<Phone size={18} />
+					{CONTACT.PHONE_DISPLAY}
+				</a>
+			</div>
+		</div>
+	</section>
+
+	<!-- Trust signals -->
+	<section class="border-b border-border">
+		<div class="container mx-auto px-4 py-10">
+			<div
+				class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto text-center"
+			>
+				<div>
+					<div class="text-3xl font-black text-primary mb-1">100%</div>
+					<div class="text-sm text-muted-foreground">Đúng giờ đón</div>
+				</div>
+				<div>
+					<div class="text-3xl font-black text-primary mb-1">24/7</div>
+					<div class="text-sm text-muted-foreground">Hỗ trợ mọi giờ</div>
+				</div>
+				<div>
+					<div class="text-3xl font-black text-primary mb-1">0đ</div>
+					<div class="text-sm text-muted-foreground">Phí phát sinh</div>
+				</div>
+				<div>
+					<div class="text-3xl font-black text-primary mb-1">8+</div>
+					<div class="text-sm text-muted-foreground">Năm kinh nghiệm</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Why choose us -->
+	<section class="container mx-auto px-4 py-16 max-w-5xl">
+		<h2 class="text-2xl md:text-3xl font-bold mb-10 text-center">
+			Tại sao chọn Nam Thanh Car?
+		</h2>
+		<div class="grid md:grid-cols-3 gap-6">
+			<div class="rounded-xl border border-border bg-card p-6">
+				<div
+					class="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center mb-4"
+				>
+					<Plane size={20} className="text-primary" />
+				</div>
+				<h3 class="font-semibold mb-2">Theo dõi chuyến bay thực tế</h3>
+				<p class="text-sm text-muted-foreground leading-relaxed">
+					Tài xế tra cứu giờ hạ cánh thực tế — bay trễ hay sớm đều tự điều
+					chỉnh, không tính thêm phí chờ trong 60 phút đầu.
+				</p>
+			</div>
+			<div class="rounded-xl border border-border bg-card p-6">
+				<div
+					class="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center mb-4"
+				>
+					<ShieldCheck size={20} className="text-primary" />
+				</div>
+				<h3 class="font-semibold mb-2">Giá cố định, minh bạch</h3>
+				<p class="text-sm text-muted-foreground leading-relaxed">
+					Báo giá trọn gói theo tuyến trước khi đặt xe. Không tính thêm phí cầu
+					đường, phí sân bay hay phụ phí cuối tuần.
+				</p>
+			</div>
+			<div class="rounded-xl border border-border bg-card p-6">
+				<div
+					class="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center mb-4"
+				>
+					<Clock size={20} className="text-primary" />
+				</div>
+				<h3 class="font-semibold mb-2">Đặt xe 24/7, phản hồi nhanh</h3>
+				<p class="text-sm text-muted-foreground leading-relaxed">
+					Nhắn Zalo hoặc gọi điện bất kỳ giờ nào. Xác nhận xe trong 15 phút, kể
+					cả chuyến bay sáng sớm 4–5 giờ sáng.
+				</p>
+			</div>
+		</div>
+	</section>
+
+	<!-- Pricing table -->
+	<section class="border-y border-border bg-muted/20">
+		<div class="container mx-auto px-4 py-16 max-w-4xl">
+			<h2 class="text-2xl md:text-3xl font-bold mb-3 text-center">
+				Các loại xe phục vụ
+			</h2>
+			<p class="text-center text-muted-foreground mb-10">
+				Liên hệ để nhận báo giá chính xác theo tuyến và số lượng hành khách
+			</p>
+			<div class="rounded-xl border border-border overflow-hidden">
+				<table class="w-full text-sm">
+					<thead>
+						<tr class="border-b border-border bg-muted/40">
+							<th class="text-left px-5 py-3.5 font-semibold">Loại xe</th>
+							<th class="text-center px-4 py-3.5 font-semibold">Hành khách</th>
+							<th class="text-center px-5 py-3.5 font-semibold">Hành lý</th>
+						</tr>
+					</thead>
+					<tbody>
+						{
+							vehicles.map((v, i) => (
+								<tr
+									class={`border-b border-border last:border-0 ${i % 2 === 0 ? "" : "bg-muted/10"}`}
+								>
+									<td class="px-5 py-4 font-medium">{v.name}</td>
+									<td class="px-4 py-4 text-center text-muted-foreground">
+										<span class="inline-flex items-center gap-1">
+											<Users size={13} />
+											{v.seats}
+										</span>
+									</td>
+									<td class="px-5 py-4 text-center text-muted-foreground">
+										{v.luggage}
+									</td>
+								</tr>
+							))
+						}
+					</tbody>
+				</table>
+			</div>
+			<p class="text-xs text-muted-foreground mt-4 text-center">
+				* Giá trọn gói bao gồm tài xế, nhiên liệu và hỗ trợ khuân vác hành lý.
+			</p>
+		</div>
+	</section>
+
+	<!-- Booking steps -->
+	<section class="container mx-auto px-4 py-16 max-w-4xl">
+		<h2 class="text-2xl md:text-3xl font-bold mb-10 text-center">
+			Quy trình đặt xe
+		</h2>
+		<div class="grid md:grid-cols-4 gap-6">
+			{
+				steps.map((s) => (
+					<div class="flex flex-col gap-3">
+						<div class="text-4xl font-black text-primary/20">{s.n}</div>
+						<h3 class="font-semibold text-base">{s.title}</h3>
+						<p class="text-sm text-muted-foreground leading-relaxed">
+							{s.desc}
+						</p>
+					</div>
+				))
+			}
+		</div>
+	</section>
+
+	<!-- Coverage -->
+	<section class="border-y border-border bg-muted/20">
+		<div class="container mx-auto px-4 py-16 max-w-4xl">
+			<h2 class="text-2xl font-bold mb-8 text-center">Khu vực phục vụ</h2>
+			<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+				{
+					[
+						"Quận 1, 2, 3",
+						"Quận 4, 5, 6",
+						"Quận 7, 8, 9",
+						"Quận 10, 11, 12",
+						"Tân Bình, Tân Phú",
+						"Bình Thạnh, Gò Vấp",
+						"Thủ Đức City",
+						"Bình Chánh, Nhà Bè",
+					].map((area) => (
+						<div class="flex items-center gap-2 text-sm">
+							<CheckCircle size={14} className="text-primary shrink-0" />
+							{area}
+						</div>
+					))
+				}
+			</div>
+			<p class="text-center text-sm text-muted-foreground mt-6">
+				<MapPin size={14} className="inline mr-1" />
+				Phục vụ cả các tỉnh lân cận: Bình Dương, Đồng Nai, Long An, Vũng Tàu — liên
+				hệ để báo giá
+			</p>
+		</div>
+	</section>
+
+	<!-- FAQ -->
+	<section class="container mx-auto px-4 py-16 max-w-3xl">
+		<h2 class="text-2xl font-bold mb-8 text-center">Câu hỏi thường gặp</h2>
+		<div class="flex flex-col divide-y divide-border">
+			{
+				[
+					{
+						q: "Xe có theo dõi chuyến bay không?",
+						a: "Có. Tài xế theo dõi giờ hạ cánh thực tế qua FlightAware. Chuyến bay trễ hay sớm, tài xế tự điều chỉnh và chờ miễn phí 60 phút đầu sau khi máy bay hạ cánh.",
+					},
+					{
+						q: "Đặt xe trước bao lâu?",
+						a: "Tối thiểu 2 giờ trước giờ đón. Chuyến bay sáng sớm (trước 6h) hoặc đoàn nhiều người nên đặt trước 1 ngày để đảm bảo xe.",
+					},
+					{
+						q: "Giá đã bao gồm những gì?",
+						a: "Giá trọn gói bao gồm tài xế, nhiên liệu và hỗ trợ khuân vác hành lý. Không tính thêm phí cầu đường, phí sân bay (phí gửi xe tính riêng nếu tài xế phải vào bãi đậu xe).",
+					},
+					{
+						q: "Hủy đặt xe có mất phí không?",
+						a: "Hủy trước 2 giờ không mất phí. Hủy trong vòng 2 giờ trước giờ đón tính 50% giá trị chuyến.",
+					},
+				].map(({ q, a }) => (
+					<div class="py-5">
+						<h3 class="font-semibold mb-2">{q}</h3>
+						<p class="text-sm text-muted-foreground leading-relaxed">{a}</p>
+					</div>
+				))
+			}
+		</div>
+	</section>
+
+	<!-- CTA bottom -->
+	<section class="border-t border-border bg-muted/20">
+		<div class="container mx-auto px-4 py-16 text-center max-w-xl">
+			<h2 class="text-2xl font-bold mb-3">Đặt xe ngay hôm nay</h2>
+			<p class="text-muted-foreground mb-8">
+				Phản hồi trong 15 phút. Hỗ trợ 24/7 kể cả chuyến bay đêm khuya.
+			</p>
+			<div class="flex flex-col sm:flex-row gap-3 justify-center">
+				<a
+					href={CONTACT.ZALO_URL}
+					target="_blank"
+					rel="noopener noreferrer"
+					class="inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground font-semibold px-7 py-3.5 rounded-lg hover:bg-primary/90 transition-colors"
+				>
+					<MessageCircle size={18} />
+					Nhắn Zalo
+				</a>
+				<a
+					href={`tel:${CONTACT.PHONE}`}
+					class="inline-flex items-center justify-center gap-2 border border-border font-semibold px-7 py-3.5 rounded-lg hover:bg-muted/50 transition-colors"
+				>
+					<Phone size={18} />
+					{CONTACT.PHONE_DISPLAY}
+				</a>
+			</div>
+		</div>
+	</section>
+
+	<!-- Mobile sticky CTA -->
+	<div
+		class="fixed bottom-0 inset-x-0 z-40 lg:hidden border-t border-border bg-background/95 backdrop-blur-sm px-4 py-3"
+	>
+		<div class="flex gap-3">
+			<a
+				href={CONTACT.ZALO_URL}
+				target="_blank"
+				rel="noopener noreferrer"
+				class="flex-1 flex items-center justify-center gap-2 bg-primary text-primary-foreground font-semibold py-3 rounded-lg"
+			>
+				<MessageCircle size={18} />
+				Đặt xe Zalo
+			</a>
+			<a
+				href={`tel:${CONTACT.PHONE}`}
+				class="flex items-center justify-center gap-2 border border-border font-semibold px-5 py-3 rounded-lg"
+			>
+				<Phone size={18} />
+			</a>
+		</div>
+	</div>
+</Layout>

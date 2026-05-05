@@ -1,0 +1,63 @@
+# Nam Thanh Car
+
+> Dịch vụ cho thuê xe uy tín tại TP. Hồ Chí Minh từ năm 2016.
+> Reliable car rental service in Ho Chi Minh City, Vietnam. Est. 2016.
+
+## Dịch vụ / Services
+
+- Cho thuê xe theo ngày: từ 1.300.000đ/ngày (Toyota Vios 5 chỗ)
+- Cho thuê xe theo tháng: từ 28.000.000đ/tháng
+- Xe có tài xế và tự lái
+- Giao xe tận nơi trong TP.HCM, bảo hiểm đầy đủ, hỗ trợ 24/7
+
+## Đội xe / Fleet
+
+| Xe | Chỗ | Ngày | Tháng |
+|---|---|---|---|
+| Toyota Vios | 5 | 1.300.000đ | 28.000.000đ |
+| Mazda 3 | 5 | 1.300.000đ | 28.000.000đ |
+| Toyota Innova | 7 | 1.600.000đ | 33.000.000đ |
+| Toyota Fortuner | 7 | 1.900.000đ | 36.000.000đ |
+| Kia Sedona | 7 | 2.000.000đ | 36.000.000đ |
+| Kia Carnival | 7 | 2.700.000đ | 48.000.000đ |
+| Hyundai Solati | 16 | 3.500.000đ | 60.000.000đ |
+| Ford Transit | 18 | 3.800.000đ | 65.000.000đ |
+| Hyundai Universe 29 chỗ | 29 | 5.000.000đ | 80.000.000đ |
+| Hyundai Universe 45 chỗ | 45 | 7.000.000đ | 100.000.000đ |
+
+## Liên hệ / Contact
+
+- Điện thoại: 0938 881 891
+- Zalo: 0934 127 502
+- Email: Carnamthanh@gmail.com
+- Địa chỉ: E8/221/A20 QL50, Bình Hưng, Bình Chánh, TP.HCM
+- Facebook: https://www.facebook.com/carnamthanh
+
+## Dịch vụ đặc biệt / Special Services
+
+- Đưa đón sân bay Tân Sơn Nhất: từ 350.000đ, theo dõi giờ bay thực tế
+  https://namthanhcar.net/dich-vu/dua-don-san-bay/
+- Cho thuê xe cưới: từ 2.800.000đ/buổi, trang trí hoa tươi, tài xế vest
+  https://namthanhcar.net/dich-vu/cuoi-hoi/
+
+## Trang chính / Key Pages
+
+- [Trang chủ](https://namthanhcar.net/): Giới thiệu dịch vụ, đội xe nổi bật, bảng giá tóm tắt và form liên hệ nhanh
+- [Bảng giá xe cho thuê](https://namthanhcar.net/xe/): Toàn bộ đội xe với giá theo ngày và theo tháng cho 5–45 chỗ
+- [Giới thiệu](https://namthanhcar.net/gioi-thieu/): Lịch sử hình thành từ 2016, giá trị cốt lõi và lý do khách hàng tin chọn
+- [Liên hệ](https://namthanhcar.net/lien-he/): Form đặt xe, số điện thoại, Zalo và địa chỉ văn phòng
+- [Blog](https://namthanhcar.net/blog/): Kinh nghiệm thuê xe, so sánh xe, địa điểm du lịch gần TP.HCM
+- [English version](https://namthanhcar.net/en/): Car rental services in English for foreign visitors
+
+## Xe theo từng dòng / Individual Vehicle Pages
+
+- [Toyota Vios](https://namthanhcar.net/xe/toyota-vios/): Sedan 5 chỗ giá rẻ nhất, từ 1.300.000đ/ngày — phù hợp cá nhân và gia đình nhỏ
+- [Mazda 3](https://namthanhcar.net/xe/mazda-3/): Sedan 5 chỗ thiết kế sang trọng, động cơ tiết kiệm, từ 1.300.000đ/ngày
+- [Toyota Innova](https://namthanhcar.net/xe/toyota-innova/): SUV 7 chỗ phổ biến nhất cho doanh nghiệp, từ 1.600.000đ/ngày
+- [Toyota Fortuner](https://namthanhcar.net/xe/toyota-fortuner/): SUV 7 chỗ gầm cao vượt địa hình, từ 1.900.000đ/ngày
+- [Kia Sedona](https://namthanhcar.net/xe/kia-sedona/): MPV 7 chỗ cân bằng sang trọng và tiết kiệm, từ 2.000.000đ/ngày
+- [Kia Carnival](https://namthanhcar.net/xe/kia-carnival/): MPV 7 chỗ cao cấp nhất, ghế thương gia, từ 2.700.000đ/ngày
+- [Hyundai Solati](https://namthanhcar.net/xe/hyundai-solati/): Minibus 16 chỗ cho nhóm và doanh nghiệp, từ 3.500.000đ/ngày
+- [Ford Transit](https://namthanhcar.net/xe/ford-transit/): Minibus 18 chỗ kinh điển cho tour và đón sân bay tập thể, từ 3.800.000đ/ngày
+- [Hyundai Universe 29 chỗ](https://namthanhcar.net/xe/hyundai-universe-29/): Xe khách trung cho sự kiện doanh nghiệp, từ 5.000.000đ/ngày
+- [Hyundai Universe 45 chỗ](https://namthanhcar.net/xe/hyundai-universe-45/): Xe khách lớn nhất đội, từ 7.000.000đ/ngày — tương đương 155.000đ/người

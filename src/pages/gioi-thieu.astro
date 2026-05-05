@@ -11,5 +11,62 @@ const locale = getLocaleFromUrl(Astro.url);
 	description="Công ty TNHH TM DV VT Nam Thanh – Hơn 8 năm cung cấp dịch vụ thuê xe uy tín tại TP.HCM. Uy tín – An toàn – Chuyên nghiệp."
 	routeKey="about"
 >
+	<script slot="head" type="application/ld+json" set:html={JSON.stringify({
+		"@context": "https://schema.org",
+		"@graph": [
+			{
+				"@type": "AboutPage",
+				"@id": "https://namthanhcar.net/gioi-thieu/#webpage",
+				"name": "Giới thiệu – Nam Thanh Car",
+				"description": "Công ty TNHH TM DV VT Nam Thanh – Hơn 8 năm cung cấp dịch vụ thuê xe uy tín tại TP.HCM. Uy tín – An toàn – Chuyên nghiệp.",
+				"url": "https://namthanhcar.net/gioi-thieu/",
+				"inLanguage": "vi-VN",
+				"about": { "@id": "https://namthanhcar.net/#business" },
+				"publisher": { "@id": "https://namthanhcar.net/#business" },
+				"isPartOf": { "@id": "https://namthanhcar.net/#website" }
+			},
+			{
+				"@type": ["AutoRental", "LocalBusiness"],
+				"@id": "https://namthanhcar.net/#business",
+				"name": "Nam Thanh Car",
+				"legalName": "Công ty TNHH TM DV VT Nam Thanh",
+				"url": "https://namthanhcar.net/",
+				"logo": {
+					"@type": "ImageObject",
+					"url": "https://namthanhcar.net/logo.webp",
+					"width": 400,
+					"height": 214
+				},
+				"foundingDate": "2016",
+				"slogan": "Uy tín – An toàn – Chuyên nghiệp",
+				"description": "Dịch vụ thuê xe theo ngày và theo tháng tại TP.HCM từ năm 2016. Đội xe đa dạng từ 5–45 chỗ, tài xế chuyên nghiệp, giao xe tận nơi, bảo hiểm đầy đủ.",
+				"knowsAbout": [
+					"Cho thuê xe theo ngày tại TP.HCM",
+					"Cho thuê xe theo tháng cho doanh nghiệp",
+					"Vận tải hành khách",
+					"Đưa đón sân bay Tân Sơn Nhất",
+					"Cho thuê xe cưới"
+				],
+				"numberOfEmployees": {
+					"@type": "QuantitativeValue",
+					"minValue": 5,
+					"maxValue": 20
+				},
+				"telephone": "+84938881891",
+				"email": "Carnamthanh@gmail.com",
+				"address": {
+					"@type": "PostalAddress",
+					"streetAddress": "E8/221/A20 QL50",
+					"addressLocality": "Bình Hưng, Bình Chánh",
+					"addressRegion": "Thành phố Hồ Chí Minh",
+					"addressCountry": "VN"
+				},
+				"sameAs": [
+					"https://www.facebook.com/carnamthanh",
+					"https://maps.app.goo.gl/hwb7G7R8wxmGdWJy5"
+				]
+			}
+		]
+	})} />
 	<AboutPageContent locale={locale} />
 </Layout>

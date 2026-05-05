@@ -13,6 +13,8 @@ interface Props {
 const { locale, cars } = Astro.props;
 const t = useTranslations(locale);
 
+const fleetBase = locale === 'vi' ? '/xe' : '/en/car-rental';
+
 // Serialise for React island — resolve ImageMetadata to optimised URL strings
 const carsData = await Promise.all(
 	cars.map(async (c) => {
@@ -22,7 +24,7 @@ const carsData = await Promise.all(
 				return src;
 			}),
 		);
-		return { id: c.id, data: { ...c.data, images } };
+		return { id: c.id, data: { ...c.data, images }, detailUrl: `${fleetBase}/${c.id}` };
 	}),
 );
 
@@ -42,6 +44,8 @@ const fleetT = {
 	allCars: t.fleet.allCars,
 	filter4Seats: t.fleet.filter4Seats,
 	filter7Seats: t.fleet.filter7Seats,
+	filter16Plus: t.fleet.filter16Plus,
+	viewDetails: t.fleet.viewDetails,
 };
 ---
 
@@ -50,6 +54,11 @@ const fleetT = {
 	<div class="container mx-auto px-4 py-16 text-center">
 		<h1 class="text-4xl font-bold mb-3">{t.fleet.pageTitle}</h1>
 		<p class="text-muted-foreground max-w-xl mx-auto">{t.fleet.pageSubtitle}</p>
+		<p class="mt-6 text-sm text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+			{locale === "vi"
+				? "Nam Thanh Car cung cấp dịch vụ cho thuê xe tại TP.HCM với đội xe đa dạng từ 5 đến 45 chỗ: Toyota Vios, Mazda 3, Toyota Innova, Toyota Fortuner, Kia Sedona, Kia Carnival, Hyundai Solati, Ford Transit và Hyundai Universe. Tất cả xe đều có bảo hiểm vật chất đầy đủ, được bảo dưỡng định kỳ và giao tận nơi trong TP.HCM. Giá thuê theo ngày từ 1.300.000đ, theo tháng từ 28.000.000đ."
+				: "Nam Thanh Car offers car rental in Ho Chi Minh City with a diverse fleet of 5 to 45-seat vehicles: Toyota Vios, Mazda 3, Toyota Innova, Toyota Fortuner, Kia Sedona, Kia Carnival, Hyundai Solati, Ford Transit and Hyundai Universe. All vehicles include comprehensive insurance, regular maintenance and free delivery anywhere in Ho Chi Minh City. Daily rates from 1,300,000 VND, monthly from 28,000,000 VND."}
+		</p>
 	</div>
 </section>
 

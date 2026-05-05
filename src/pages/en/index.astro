@@ -1,0 +1,31 @@
+---
+import { getCollection } from "astro:content";
+import CtaSection from "@/components/home/CtaSection.astro";
+import FaqSection from "@/components/home/FaqSection.astro";
+import FleetPreview from "@/components/home/FleetPreview.astro";
+import HeroSection from "@/components/home/HeroSection.astro";
+import PartnersSection from "@/components/home/PartnersSection.astro";
+import RentalTypes from "@/components/home/RentalTypes.astro";
+import StatsSection from "@/components/home/StatsSection.astro";
+import { getLocaleFromUrl } from "@/i18n/translations";
+import Layout from "@/layouts/Layout.astro";
+
+const locale = getLocaleFromUrl(Astro.url);
+
+const allCars = await getCollection("cars");
+const featuredCars = allCars.filter((c) => c.data.available).slice(0, 3);
+---
+
+<Layout
+	title="Nam Thanh Car – Trusted Car Rental in Ho Chi Minh City"
+	description="Daily and monthly car rental in Ho Chi Minh City. 4–7 seat fleet, professional drivers, transparent pricing."
+	routeKey="home"
+>
+	<HeroSection locale={locale} />
+	<StatsSection locale={locale} />
+	<FleetPreview locale={locale} cars={featuredCars} />
+	<PartnersSection locale={locale} />
+	<RentalTypes locale={locale} />
+	<FaqSection locale={locale} />
+	<CtaSection locale={locale} />
+</Layout>

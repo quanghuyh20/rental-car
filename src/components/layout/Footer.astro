@@ -1,4 +1,5 @@
 ---
+import { MapPin, Phone, Mail, Map, MessageCircle } from "lucide-react";
 import { getLocaleFromUrl, useTranslations } from "@/i18n/translations";
 import { localePath } from "@/i18n/paths";
 import { CONTACT } from "@/lib/constants";
@@ -9,7 +10,7 @@ const t = useTranslations(locale);
 
 <footer class="bg-muted/40 border-t border-border mt-24">
 	<div class="container mx-auto px-4 py-12">
-		<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+		<div class="grid grid-cols-1 md:grid-cols-4 gap-8">
 			<!-- Brand -->
 			<div>
 				<a href={localePath(locale, "home")} class="font-bold text-xl">
@@ -38,63 +39,87 @@ const t = useTranslations(locale);
 						target="_blank"
 						rel="noopener noreferrer"
 						aria-label="Zalo"
-						class="text-muted-foreground hover:text-foreground transition-colors text-sm font-bold"
+						class="text-muted-foreground hover:text-foreground transition-colors"
 					>
-						Zalo
+						<MessageCircle size={20} />
 					</a>
 				</div>
 			</div>
 
 			<!-- Quick links -->
 			<div>
-				<h4 class="font-semibold text-sm mb-4">{t.footer.links}</h4>
+				<p class="font-semibold text-sm mb-4">{t.footer.links}</p>
 				<ul class="space-y-2 text-sm text-muted-foreground">
 					<li>
 						<a
 							href={localePath(locale, "home")}
-							class="hover:text-foreground transition-colors">{t.nav.home}</a>
+							class="hover:text-foreground transition-colors">{t.nav.home}</a
+						>
 					</li>
 					<li>
 						<a
 							href={localePath(locale, "fleet")}
-							class="hover:text-foreground transition-colors">{t.nav.fleet}</a>
+							class="hover:text-foreground transition-colors">{t.nav.fleet}</a
+						>
 					</li>
 					<li>
 						<a
 							href={localePath(locale, "about")}
-							class="hover:text-foreground transition-colors">{t.nav.about}</a>
+							class="hover:text-foreground transition-colors">{t.nav.about}</a
+						>
 					</li>
 					<li>
 						<a
 							href={localePath(locale, "contact")}
-							class="hover:text-foreground transition-colors"
-							>{t.nav.contact}</a>
+							class="hover:text-foreground transition-colors">{t.nav.contact}</a
+						>
 					</li>
 				</ul>
 			</div>
 
+			<!-- Services (VI only) -->
+			{locale === "vi" && (
+				<div>
+					<p class="font-semibold text-sm mb-4">Dịch vụ</p>
+					<ul class="space-y-2 text-sm text-muted-foreground">
+						<li>
+							<a href="/dich-vu/dua-don-san-bay/" class="hover:text-foreground transition-colors">
+								Đưa đón sân bay
+							</a>
+						</li>
+						<li>
+							<a href="/dich-vu/cuoi-hoi/" class="hover:text-foreground transition-colors">
+								Cho thuê xe cưới
+							</a>
+						</li>
+					</ul>
+				</div>
+			)}
+
 			<!-- Contact -->
 			<div>
-				<h4 class="font-semibold text-sm mb-4">{t.footer.contact}</h4>
-				<ul class="space-y-2 text-sm text-muted-foreground">
+				<p class="font-semibold text-sm mb-4">{t.footer.contact}</p>
+				<ul class="space-y-3 text-sm text-muted-foreground">
 					<li class="flex gap-2 items-start">
-						<span class="shrink-0">📍</span>
+						<MapPin size={16} className="shrink-0 mt-0.5 text-primary" />
 						<span>{t.footer.address}</span>
 					</li>
 					<li>
 						<a
 							href={`tel:${CONTACT.PHONE}`}
-							class="hover:text-foreground transition-colors"
+							class="flex gap-2 items-center hover:text-foreground transition-colors"
 						>
-							📞 {CONTACT.PHONE_DISPLAY}
+							<Phone size={16} className="shrink-0 text-primary" />
+							{CONTACT.PHONE_DISPLAY}
 						</a>
 					</li>
 					<li>
 						<a
 							href={`mailto:${CONTACT.EMAIL}`}
-							class="hover:text-foreground transition-colors"
+							class="flex gap-2 items-center hover:text-foreground transition-colors"
 						>
-							✉️ {CONTACT.EMAIL}
+							<Mail size={16} className="shrink-0 text-primary" />
+							{CONTACT.EMAIL}
 						</a>
 					</li>
 					<li>
@@ -102,9 +127,10 @@ const t = useTranslations(locale);
 							href={CONTACT.MAPS}
 							target="_blank"
 							rel="noopener noreferrer"
-							class="hover:text-foreground transition-colors"
+							class="flex gap-2 items-center hover:text-foreground transition-colors"
 						>
-							🗺️ Google Maps
+							<Map size={16} className="shrink-0 text-primary" />
+							Google Maps
 						</a>
 					</li>
 				</ul>

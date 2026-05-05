@@ -1,0 +1,242 @@
+---
+import { Image, getImage } from "astro:assets";
+import { useTranslations, type Locale } from "@/i18n/translations";
+import { CONTACT } from "@/lib/constants";
+import { localePath } from "@/i18n/paths";
+import CtaSection from "@/components/home/CtaSection.astro";
+import { ImageGallery } from "@/components/fleet/ImageGallery";
+import type { CollectionEntry } from "astro:content";
+import {
+	MessageCircle,
+	Phone,
+	Users,
+	Cog,
+	Fuel,
+	MapPin,
+	ShieldCheck,
+	Clock,
+	BadgeCheck,
+} from "lucide-react";
+
+interface Props {
+	locale: Locale;
+	car: CollectionEntry<"cars">;
+	Content: import("astro").AstroComponentFactory;
+}
+
+const { locale, car, Content } = Astro.props;
+const t = useTranslations(locale);
+const d = car.data;
+
+function formatPrice(n: number) {
+	return n.toLocaleString("vi-VN") + "đ";
+}
+
+const transmissionText = t.fleet[d.transmission];
+const fuelText = t.fleet[d.fuel];
+const fleetPath = localePath(locale, "fleet");
+const gallery = d.gallery ?? [];
+
+const galleryThumbUrls = await Promise.all(
+	gallery.slice(0, 4).map(async (img) => {
+		const { src } = await getImage({
+			src: img,
+			format: "webp",
+			width: 400,
+			height: 300,
+		});
+		return src;
+	}),
+);
+
+const galleryUrls = await Promise.all(
+	gallery.map(async (img) => {
+		const { src } = await getImage({ src: img, format: "webp", width: 1200 });
+		return src;
+	}),
+);
+---
+
+<!-- Breadcrumb -->
+<section class="border-b border-border bg-muted/20">
+	<div class="container mx-auto px-4 py-4">
+		<a href={fleetPath} class="text-sm text-primary hover:underline">
+			{t.fleet.backToFleet}
+		</a>
+	</div>
+</section>
+
+<!-- Main content: 2 cols -->
+<section class="container mx-auto px-4 py-10 pb-28 lg:pb-10">
+	<div class="grid lg:grid-cols-2 gap-10 items-start">
+		<!-- Left: Hero image + thumbnail strip -->
+		<div>
+			{
+				d.images.length > 0 ? (
+					<div class="rounded-xl overflow-hidden bg-muted/20 border border-border p-6">
+						<Image
+							src={d.images[0]}
+							alt={`${d.name} ${d.seats} chỗ – thuê xe tại TP.HCM`}
+							width={800}
+							height={450}
+							format="webp"
+							class="w-full h-auto object-contain drop-shadow-lg"
+							decoding="async"
+						/>
+					</div>
+				) : (
+					<div class="rounded-xl bg-muted/20 border border-border flex items-center justify-center aspect-[16/10]">
+						<span class="text-muted-foreground">No image</span>
+					</div>
+				)
+			}
+		</div>
+
+		<!-- Right: Sticky info card -->
+		<div
+			class="lg:sticky lg:top-20 rounded-2xl border border-border bg-card overflow-hidden"
+		>
+			<!-- Zone A: Name + pricing -->
+			<div class="px-6 pt-6 pb-4 border-b border-border">
+				<h1 class="text-2xl lg:text-3xl font-bold mb-4">{d.name}</h1>
+				<div class="flex items-baseline gap-2">
+					<span class="text-3xl lg:text-4xl font-bold text-primary">
+						{formatPrice(d.pricePerDay)}
+					</span>
+					<span class="text-sm text-muted-foreground">/{t.fleet.perDay}</span>
+				</div>
+				<div class="mt-1.5 text-sm text-muted-foreground">
+					{t.fleet.monthlyRate}: <span class="font-semibold text-foreground"
+						>{formatPrice(d.pricePerMonth)}</span
+					>/{t.fleet.perMonth}
+				</div>
+			</div>
+
+			<!-- Zone B: Specs 3-col icons -->
+			<div class="px-6 py-4 border-b border-border">
+				<div class="grid grid-cols-3 gap-3 text-center text-sm">
+					<div class="rounded-lg bg-muted/30 p-3">
+						<Users size={20} className="text-primary mx-auto mb-1.5" />
+						<div class="font-medium">{d.seats} {t.fleet.seats}</div>
+					</div>
+					<div class="rounded-lg bg-muted/30 p-3">
+						<Cog size={20} className="text-primary mx-auto mb-1.5" />
+						<div class="font-medium">{transmissionText}</div>
+					</div>
+					<div class="rounded-lg bg-muted/30 p-3">
+						<Fuel size={20} className="text-primary mx-auto mb-1.5" />
+						<div class="font-medium">{fuelText}</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Zone D: Body content -->
+			{
+				Content && (
+					<div class="px-6 py-4 border-b border-border prose dark:prose-invert prose-primary prose-sm max-w-none">
+						<Content />
+					</div>
+				)
+			}
+
+			<!-- Zone C: CTA -->
+			<div class="px-6 py-5">
+				<a
+					href={CONTACT.ZALO_URL}
+					target="_blank"
+					rel="noopener noreferrer"
+					class="flex items-center justify-center gap-2 w-full bg-primary text-primary-foreground text-sm font-semibold px-4 py-3 rounded-lg hover:bg-primary/90 transition-colors"
+				>
+					<MessageCircle size={18} />
+					{d.available ? t.fleet.bookNow : t.fleet.askPrice}
+				</a>
+				<a
+					href={`tel:${CONTACT.PHONE}`}
+					class="flex items-center justify-center gap-2 w-full mt-3 border border-border text-sm font-semibold px-4 py-2.5 rounded-lg hover:bg-muted transition-colors"
+				>
+					<Phone size={16} />
+					{CONTACT.PHONE_DISPLAY} — {t.fleet.callNow}
+				</a>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- Why choose us -->
+<section class="relative overflow-hidden border-y border-border py-16">
+	<!-- Grid background -->
+	<div
+		class="absolute inset-0 [background-size:40px_40px] [background-image:linear-gradient(to_right,#e4e4e7_1px,transparent_1px),linear-gradient(to_bottom,#e4e4e7_1px,transparent_1px)] dark:[background-image:linear-gradient(to_right,#262626_1px,transparent_1px),linear-gradient(to_bottom,#262626_1px,transparent_1px)]"
+	></div>
+	<!-- Radial fade -->
+	<div class="pointer-events-none absolute inset-0 bg-background [mask-image:radial-gradient(ellipse_at_center,transparent_30%,black)]"></div>
+
+	<div class="relative z-10 container mx-auto px-4">
+		<h2 class="text-2xl font-bold mb-8 text-center">Tại sao nên chọn dịch vụ tại Nam Thanh Car?</h2>
+		<div class="grid grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+			<div class="rounded-xl border border-border bg-card/80 backdrop-blur-sm px-6 py-5">
+				<div class="flex items-center gap-2 mb-3">
+					<BadgeCheck size={22} className="text-primary shrink-0" />
+					<span class="font-semibold">Tối ưu dòng tiền</span>
+				</div>
+				<p class="text-sm text-muted-foreground leading-relaxed">Không tốn chi phí đầu tư ban đầu, có hóa đơn VAT đầy đủ để khấu trừ thuế.</p>
+			</div>
+			<div class="rounded-xl border border-border bg-card/80 backdrop-blur-sm px-6 py-5">
+				<div class="flex items-center gap-2 mb-3">
+					<ShieldCheck size={22} className="text-primary shrink-0" />
+					<span class="font-semibold">Xe đời mới 100%</span>
+				</div>
+				<p class="text-sm text-muted-foreground leading-relaxed">Cam kết cung cấp xe chất lượng cao, sạch sẽ và được bảo trì định kỳ đúng tiêu chuẩn.</p>
+			</div>
+			<div class="rounded-xl border border-border bg-card/80 backdrop-blur-sm px-6 py-5">
+				<div class="flex items-center gap-2 mb-3">
+					<MapPin size={22} className="text-primary shrink-0" />
+					<span class="font-semibold">Dịch vụ trọn gói</span>
+				</div>
+				<p class="text-sm text-muted-foreground leading-relaxed">Nam Thanh Car chịu trách nhiệm toàn bộ về bảo hiểm, đăng kiểm và phí bảo trì.</p>
+			</div>
+			<div class="rounded-xl border border-border bg-card/80 backdrop-blur-sm px-6 py-5">
+				<div class="flex items-center gap-2 mb-3">
+					<Clock size={22} className="text-primary shrink-0" />
+					<span class="font-semibold">Cam kết ổn định</span>
+				</div>
+				<p class="text-sm text-muted-foreground leading-relaxed">Có xe thay thế tức thì nếu xe bảo dưỡng, đảm bảo tiến độ công việc của quý khách không bị gián đoạn.</p>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- Gallery: real photos -->
+{
+	galleryUrls.length > 0 && (
+		<section id="gallery" class="container mx-auto px-4 pb-16">
+			<h2 class="text-2xl font-bold mb-6">{t.fleet.gallery}</h2>
+			<ImageGallery client:load images={galleryUrls} alt={d.name} />
+		</section>
+	)
+}
+
+<CtaSection locale={locale} />
+
+<!-- Mobile sticky CTA bar -->
+<div
+	class="fixed bottom-0 inset-x-0 z-40 lg:hidden border-t border-border bg-background/95 backdrop-blur-sm px-4 py-3"
+>
+	<div class="flex gap-3">
+		<a
+			href={CONTACT.ZALO_URL}
+			target="_blank"
+			rel="noopener noreferrer"
+			class="flex-1 flex items-center justify-center gap-2 bg-primary text-primary-foreground font-semibold py-3 rounded-lg"
+		>
+			<MessageCircle size={18} />
+			{d.available ? t.fleet.bookNow : t.fleet.askPrice}
+		</a>
+		<a
+			href={`tel:${CONTACT.PHONE}`}
+			class="flex items-center justify-center gap-2 border border-border font-semibold px-5 py-3 rounded-lg"
+		>
+			<Phone size={18} />
+		</a>
+	</div>
+</div>

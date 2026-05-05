@@ -1,0 +1,20 @@
+---
+import { getCollection } from "astro:content";
+import BlogGrid from "@/components/blog/BlogGrid.astro";
+import { getLocaleFromUrl } from "@/i18n/translations";
+import Layout from "@/layouts/Layout.astro";
+
+const locale = getLocaleFromUrl(Astro.url);
+
+const posts = (await getCollection("blog"))
+	.filter((p) => p.data.locale === "en" && !p.data.draft)
+	.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+---
+
+<Layout
+	title="Blog – Nam Thanh Car"
+	description="Tips and insights about car rental in Ho Chi Minh City"
+	routeKey="blog"
+>
+	<BlogGrid posts={posts} locale={locale} />
+</Layout>

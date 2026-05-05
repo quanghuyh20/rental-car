@@ -6,6 +6,7 @@ export const translations = {
 			fleet: "Xe cho thuê",
 			about: "Giới thiệu",
 			contact: "Liên hệ",
+			blog: "Blog",
 		},
 		// Hero
 		hero: {
@@ -47,8 +48,25 @@ export const translations = {
 			bookNow: "Đặt xe ngay",
 			askPrice: "Hỏi giá",
 			allCars: "Tất cả",
-			filter4Seats: "4 chỗ",
+			filter4Seats: "4–5 chỗ",
 			filter7Seats: "7 chỗ",
+			filter16Plus: "16+ chỗ",
+			viewDetails: "Xem chi tiết",
+			backToFleet: "← Quay lại danh sách xe",
+			specs: "Thông số",
+			pricing: "Bảng giá",
+			features: "Đặc điểm nổi bật",
+			seatsLabel: "Số chỗ ngồi",
+			transmissionLabel: "Hộp số",
+			fuelLabel: "Nhiên liệu",
+			statusLabel: "Tình trạng",
+			dailyRate: "Giá theo ngày",
+			monthlyRate: "Giá theo tháng",
+			gallery: "Hình ảnh xe",
+			contactToBook: "Liên hệ đặt xe",
+			contactDesc:
+				"Gọi ngay hoặc nhắn Zalo để được tư vấn và báo giá nhanh nhất",
+			callNow: "Gọi ngay",
 		},
 		// About
 		about: {
@@ -123,6 +141,13 @@ export const translations = {
 				"Tiết kiệm chi phí cho doanh nghiệp và cá nhân có nhu cầu dài hạn. Ưu tiên phục vụ 22 ngày làm việc/tháng.",
 			learnMore: "Xem chi tiết",
 		},
+		// Blog
+		blog: {
+			pageTitle: "Blog",
+			pageSubtitle: "Chia sẻ kinh nghiệm và kiến thức về thuê xe",
+			readMore: "Đọc thêm",
+			noPosts: "Chưa có bài viết nào.",
+		},
 		// CTA
 		cta: {
 			title: "Bạn cần thuê xe?",
@@ -146,6 +171,7 @@ export const translations = {
 			fleet: "Fleet",
 			about: "About",
 			contact: "Contact",
+			blog: "Blog",
 		},
 		hero: {
 			badge: "10 years serving customers in Ho Chi Minh City",
@@ -183,8 +209,24 @@ export const translations = {
 			bookNow: "Book now",
 			askPrice: "Ask for price",
 			allCars: "All",
-			filter4Seats: "4 seats",
+			filter4Seats: "4–5 seats",
 			filter7Seats: "7 seats",
+			filter16Plus: "16+ seats",
+			viewDetails: "View details",
+			backToFleet: "← Back to fleet",
+			specs: "Specifications",
+			pricing: "Pricing",
+			features: "Key Features",
+			seatsLabel: "Seats",
+			transmissionLabel: "Transmission",
+			fuelLabel: "Fuel",
+			statusLabel: "Status",
+			dailyRate: "Daily rate",
+			monthlyRate: "Monthly rate",
+			gallery: "Gallery",
+			contactToBook: "Contact to book",
+			contactDesc: "Call or message us on Zalo for the fastest quote",
+			callNow: "Call now",
 		},
 		about: {
 			pageTitle: "About Us",
@@ -254,6 +296,12 @@ export const translations = {
 			monthDesc:
 				"Cost-effective for businesses and individuals with long-term needs. Priority service for 22 working days/month.",
 			learnMore: "Learn more",
+		},
+		blog: {
+			pageTitle: "Blog",
+			pageSubtitle: "Tips and insights about car rental",
+			readMore: "Read more",
+			noPosts: "No posts yet.",
 		},
 		cta: {
 			title: "Need a car?",

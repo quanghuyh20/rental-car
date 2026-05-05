@@ -1,10 +1,12 @@
 ---
 import { getCollection } from "astro:content";
 import CtaSection from "@/components/home/CtaSection.astro";
+import FaqSection from "@/components/home/FaqSection.astro";
 import FleetPreview from "@/components/home/FleetPreview.astro";
 import HeroSection from "@/components/home/HeroSection.astro";
 import PartnersSection from "@/components/home/PartnersSection.astro";
 import RentalTypes from "@/components/home/RentalTypes.astro";
+import ServicesSection from "@/components/home/ServicesSection.astro";
 import StatsSection from "@/components/home/StatsSection.astro";
 import { getLocaleFromUrl } from "@/i18n/translations";
 import Layout from "@/layouts/Layout.astro";
@@ -20,10 +22,83 @@ const featuredCars = allCars.filter((c) => c.data.available).slice(0, 3);
 	description="Dịch vụ thuê xe theo ngày và theo tháng tại TP.HCM. Đội xe đa dạng 4–7 chỗ, tài xế chuyên nghiệp, giá cả minh bạch."
 	routeKey="home"
 >
+	<script
+		slot="head"
+		type="application/ld+json"
+		set:html={JSON.stringify({
+			"@context": "https://schema.org",
+			"@graph": [
+				{
+					"@type": ["AutoRental", "LocalBusiness"],
+					"@id": "https://namthanhcar.net/#business",
+					name: "Nam Thanh Car",
+					legalName: "Công ty TNHH TM DV VT Nam Thanh",
+					url: "https://namthanhcar.net/",
+					logo: "https://namthanhcar.net/logo.webp",
+					image: "https://namthanhcar.net/og-image.webp",
+					description:
+						"Dịch vụ thuê xe theo ngày và theo tháng tại TP.HCM. Đội xe đa dạng từ 4–45 chỗ, tài xế chuyên nghiệp, giá cả minh bạch.",
+					foundingDate: "2016",
+					telephone: "+84938881891",
+					email: "Carnamthanh@gmail.com",
+					address: {
+						"@type": "PostalAddress",
+						streetAddress: "E8/221/A20 QL50",
+						addressLocality: "Bình Hưng, Bình Chánh",
+						addressRegion: "Thành phố Hồ Chí Minh",
+						addressCountry: "VN",
+					},
+					geo: {
+						"@type": "GeoCoordinates",
+						latitude: 10.7006518,
+						longitude: 106.6552328,
+					},
+					areaServed: { "@type": "City", name: "Thành phố Hồ Chí Minh" },
+					openingHoursSpecification: [
+						{
+							"@type": "OpeningHoursSpecification",
+							dayOfWeek: [
+								"Monday",
+								"Tuesday",
+								"Wednesday",
+								"Thursday",
+								"Friday",
+								"Saturday",
+								"Sunday",
+							],
+							opens: "00:00",
+							closes: "23:59",
+						},
+					],
+					priceRange: "1.300.000đ – 7.000.000đ / ngày",
+					currenciesAccepted: "VND",
+					hasOfferCatalog: {
+						"@type": "OfferCatalog",
+						name: "Bảng giá xe cho thuê",
+						url: "https://namthanhcar.net/xe/",
+					},
+					sameAs: [
+						"https://www.facebook.com/carnamthanh",
+						"https://maps.app.goo.gl/hwb7G7R8wxmGdWJy5",
+					],
+				},
+				{
+					"@type": "WebSite",
+					"@id": "https://namthanhcar.net/#website",
+					url: "https://namthanhcar.net/",
+					name: "Nam Thanh Car",
+					inLanguage: ["vi", "en"],
+					publisher: { "@id": "https://namthanhcar.net/#business" },
+				},
+			],
+		})}
+	/>
 	<HeroSection locale={locale} />
 	<StatsSection locale={locale} />
 	<FleetPreview locale={locale} cars={featuredCars} />
 	<PartnersSection locale={locale} />
 	<RentalTypes locale={locale} />
+	<ServicesSection locale={locale} />
+	<FaqSection locale={locale} />
 	<CtaSection locale={locale} />
 </Layout>

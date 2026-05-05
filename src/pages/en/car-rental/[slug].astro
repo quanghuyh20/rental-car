@@ -1,0 +1,66 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { getLocaleFromUrl } from '@/i18n/translations';
+import { getCollection, render } from 'astro:content';
+import CarDetailContent from '@/components/fleet/CarDetailContent.astro';
+
+const { slug } = Astro.params;
+const allCars = await getCollection('cars');
+const car = allCars.find((c) => c.id === slug);
+
+if (!car) return Astro.redirect('/en/car-rental');
+
+const locale = getLocaleFromUrl(Astro.url);
+const { Content } = await render(car);
+---
+
+<Layout
+	title={`${car.data.name} – Rent from Nam Thanh Car`}
+	description={`Rent ${car.data.name} ${car.data.seats}-seater in HCMC. From ${car.data.pricePerDay.toLocaleString('vi-VN')}đ/day. Free delivery, full insurance.`}
+	routeKey="fleet"
+	breadcrumbItems={[
+		{ name: "Home", url: "https://namthanhcar.net/en/" },
+		{ name: "Car Rental", url: "https://namthanhcar.net/en/car-rental/" },
+		{ name: car.data.name, url: `https://namthanhcar.net/en/car-rental/${car.id}/` },
+	]}
+>
+	<script slot="head" type="application/ld+json" set:html={JSON.stringify({
+		"@context": "https://schema.org",
+		"@type": "Product",
+		"name": `${car.data.name} – ${car.data.seats}-Seat Car Rental in Ho Chi Minh City`,
+		"description": `Rent ${car.data.name} ${car.data.seats}-seater in HCMC. From ${car.data.pricePerDay.toLocaleString('vi-VN')}đ/day. Free delivery, full insurance.`,
+		"brand": { "@type": "Brand", "name": car.data.name.split(" ")[0] },
+		"url": `https://namthanhcar.net/en/car-rental/${car.id}/`,
+		"offers": [
+			{
+				"@type": "Offer",
+				"name": "Daily rental",
+				"price": car.data.pricePerDay,
+				"priceCurrency": "VND",
+				"availability": car.data.available ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
+				"seller": { "@id": "https://namthanhcar.net/#business" },
+				"priceSpecification": {
+					"@type": "UnitPriceSpecification",
+					"price": car.data.pricePerDay,
+					"priceCurrency": "VND",
+					"unitCode": "DAY"
+				}
+			},
+			{
+				"@type": "Offer",
+				"name": "Monthly rental",
+				"price": car.data.pricePerMonth,
+				"priceCurrency": "VND",
+				"availability": car.data.available ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
+				"seller": { "@id": "https://namthanhcar.net/#business" },
+				"priceSpecification": {
+					"@type": "UnitPriceSpecification",
+					"price": car.data.pricePerMonth,
+					"priceCurrency": "VND",
+					"unitCode": "MON"
+				}
+			}
+		]
+	})} />
+	<CarDetailContent locale={locale} car={car} Content={Content} />
+</Layout>
