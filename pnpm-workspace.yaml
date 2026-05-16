@@ -1,1 +1,2 @@
-
+patchedDependencies:
+  '@keystatic/astro@5.0.6': patches/@keystatic__astro@5.0.6.patch

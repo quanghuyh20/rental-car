@@ -4,6 +4,11 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+patchedDependencies:
+  '@keystatic/astro@5.0.6':
+    hash: a278c3c4cab39718a74b4f4a7ec1de33c3b1c51d2cff43439a5674a0513ead48
+    path: patches/@keystatic__astro@5.0.6.patch
+
 importers:
 
   .:
@@ -31,7 +36,7 @@ importers:
         version: 5.2.8
       '@keystatic/astro':
         specifier: ^5.0.6
-        version: 5.0.6(@keystatic/core@0.5.50(@react-spectrum/provider@3.11.0(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(astro@6.2.2(@types/node@25.6.0)(idb-keyval@6.2.2)(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.60.3)(tsx@4.21.0))(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
+        version: 5.0.6(patch_hash=a278c3c4cab39718a74b4f4a7ec1de33c3b1c51d2cff43439a5674a0513ead48)(@keystatic/core@0.5.50(@react-spectrum/provider@3.11.0(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(astro@6.2.2(@types/node@25.6.0)(idb-keyval@6.2.2)(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.60.3)(tsx@4.21.0))(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
       '@keystatic/core':
         specifier: ^0.5.50
         version: 0.5.50(@react-spectrum/provider@3.11.0(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
@@ -6508,7 +6513,7 @@ snapshots:
       - '@react-spectrum/provider'
       - supports-color
 
-  '@keystatic/astro@5.0.6(@keystatic/core@0.5.50(@react-spectrum/provider@3.11.0(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(astro@6.2.2(@types/node@25.6.0)(idb-keyval@6.2.2)(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.60.3)(tsx@4.21.0))(react-dom@19.2.5(react@19.2.5))(react@19.2.5)':
+  '@keystatic/astro@5.0.6(patch_hash=a278c3c4cab39718a74b4f4a7ec1de33c3b1c51d2cff43439a5674a0513ead48)(@keystatic/core@0.5.50(@react-spectrum/provider@3.11.0(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(astro@6.2.2(@types/node@25.6.0)(idb-keyval@6.2.2)(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.60.3)(tsx@4.21.0))(react-dom@19.2.5(react@19.2.5))(react@19.2.5)':
     dependencies:
       '@babel/runtime': 7.29.2
       '@keystatic/core': 0.5.50(@react-spectrum/provider@3.11.0(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
